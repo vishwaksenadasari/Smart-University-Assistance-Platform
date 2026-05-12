@@ -1,4 +1,4 @@
-export default function Departments() {
+function Departments() {
   const deps = [
     { name: "Examination", email: "exam@uni.com" },
     { name: "Admin", email: "admin@uni.com" }
@@ -17,3 +17,5 @@ export default function Departments() {
     </div>
   );
 }
+
+export default Departments;

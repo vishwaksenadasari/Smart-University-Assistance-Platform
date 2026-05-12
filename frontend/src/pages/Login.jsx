@@ -1,21 +1,43 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import api from '../api/axios'
 
-export default function Login() {
-  const navigate = useNavigate();
+function Login(){
 
+  const [user_id,setUser_id]=useState('');
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+  const [error,setError]=useState('');
+  const navigate=useNavigate();
+
+
+  async function handleLogin(){
+    if(!user_id || !email || !password){
+      return setError('All fields are mandatory');
+    }
+    try{
+      const {data}=await api.post('/auth/login',{user_id,email,password});
+      localStorage.setItem('token',data.token);
+      
+      navigate('/dashboard');
+    }catch(err){
+      setError(err.response?.data?.error || 'Login failed');
+    }
+  }
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="p-8 bg-white shadow rounded w-80">
-        <h2 className="text-xl mb-4">Login</h2>
-        <input className="w-full p-2 border mb-3" placeholder="Email" />
-        <input className="w-full p-2 border mb-3" type="password" placeholder="Password" />
-        <button 
-          className="w-full bg-blue-600 text-white p-2"
-          onClick={() => navigate("/dashboard")}
-        >
-          Login
-        </button>
-      </div>
+    <div>
+      <h2>Login</h2>
+      {error && <p style={{color:'red'}}>{error}</p>}
+      <input placeholder="Roll Number" value={user_id} onChange={e=>setUser_id(e.target.value)} />
+      <input placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
+      <input placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)}
+      onKeyDown={(e)=>{
+        if(e.key==='Enter') handleLogin();
+      }} />
+      <button onClick={handleLogin}>Login</button>
+      <p>Don't have account?<Link to='/signup'>Sign up</Link></p>
     </div>
   );
 }
+
+export default Login;

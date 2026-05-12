@@ -1,27 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import SubmitIssue from "./pages/SubmitIssue";
-import TrackComplaints from "./pages/TrackComplaints";
-import Search from "./pages/Search";
-import Notices from "./pages/Notices";
-import Departments from "./pages/Departments";
-import AdminDashboard from "./pages/AdminDashboard";
+import Departments from "./pages/Departments"
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/submit" element={<SubmitIssue />} />
-        <Route path="/track" element={<TrackComplaints />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/notices" element={<Notices />} />
-        <Route path="/departments" element={<Departments />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path='/' element={<Navigate to='/login' />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path='/departments' element={<PrivateRoute><Departments /></PrivateRoute>} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

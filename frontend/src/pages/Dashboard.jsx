@@ -1,27 +1,22 @@
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import Card from "../components/Card";
-import { useNavigate } from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
+function Dashboard() {
+  const navigate=useNavigate();
 
-export default function Dashboard() {
-  const nav = useNavigate();
-
+  function handleLogout(){
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
   return (
-    <div className="flex">
-      <Sidebar />
-      <div className="flex-1">
-        <Navbar />
-        <div className="p-6">
-          <h2 className="text-2xl mb-4">Welcome 👋</h2>
-          <div className="grid grid-cols-2 gap-4">
-            <Card title="Submit Issue" onClick={() => nav("/submit")} />
-            <Card title="Track Complaints" onClick={() => nav("/track")} />
-            <Card title="Search Information" onClick={() => nav("/search")} />
-            <Card title="View Notices" onClick={() => nav("/notices")} />
-            <Card title="Departments" onClick={() => nav("/departments")} />
-          </div>
-        </div>
-      </div>
+    <div>
+        <h2>welcome to dashboard</h2>
+        <button onClick={handleLogout}>Logout</button>
+      <nav>
+        <ul>
+          <li><Link to='/departments'>Go to departments</Link></li>
+        </ul>
+      </nav>
     </div>
   );
 }
+
+export default Dashboard;
