@@ -13,6 +13,8 @@ function Dashboard() {
       <nav>
         <ul>
           <li><Link to='/departments'>Go to departments</Link></li>
+          <li><Link to='/complaints/create'>Register Complaint</Link></li>
+          <li><Link to='/complaints'>View complaints</Link></li>
         </ul>
       </nav>
     </div>
