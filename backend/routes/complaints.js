@@ -49,4 +49,23 @@ router.post('/',auth, async (req,res,next)=>{
     }
 });
 
+router.put('/:id', async (req,res,next)=>{
+    try{
+        const [existing]=await db.query('select * from complaints where student_id=? and complaint_id=?',
+            [req.user.id,req.params.id]
+        );
+        if(existing.length===0){
+            const err=new Error('failed to update complaint');
+            err.status=404;
+            return next(err);
+        }
+        const updatedstatus=req.params.status !== undefined ? req.params.status : existing[0].status;
+        await db.query('update todos set status=? where student_id=? and complaint_id=?',
+            [updatedstatus,req.user.id,req.params.id]
+        );
+    }catch(err){
+        next(err);
+    }
+})
+
 module.exports=router;

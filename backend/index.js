@@ -7,12 +7,14 @@ const logger=require('./middleware/logger');
 const errorHandler=require('./middleware/errorHandler');
 const authRouter=require('./routes/auth');
 const complaintRouter=require('./routes/complaints');
+const departmentsRouter=require('./routes/departments');
 app.use(cors({origin:'http://localhost:5173'}));
 
 app.use(express.json());
 app.use(logger);
 app.use('/auth',authRouter);
 app.use('/complaints',complaintRouter);
+app.use('/departments',departmentsRouter);
 app.use((req,res)=>{
     res.status(404).json({error: 'route not found' });
 });

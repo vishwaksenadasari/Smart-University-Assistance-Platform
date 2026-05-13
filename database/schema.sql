@@ -13,6 +13,7 @@ CREATE TABLE users (
 
 CREATE TABLE departments (
     department_id INT PRIMARY KEY,
+    department_name VARCHAR(255) NOT NULL,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     contact_email VARCHAR(100),
@@ -24,7 +25,6 @@ CREATE TABLE departments (
 CREATE TABLE complaints (
     complaint_id INT AUTO_INCREMENT PRIMARY KEY,
     student_id VARCHAR(100) NOT NULL,
-    department_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     status ENUM('Pending', 'In Progress', 'Resolved', 'Rejected') DEFAULT 'Pending',
