@@ -1,6 +1,17 @@
 CREATE DATABASE SUAPDB;
 USE SUAPDB;
 
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    contact_email VARCHAR(100),
+    phone VARCHAR(20),
+    office_location VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE users (
     user_id VARCHAR(100) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -12,17 +23,6 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     FOREIGN KEY (department_id) REFERENCES departments(department_id)
-);
-
-CREATE TABLE departments (
-    department_id INT PRIMARY KEY,
-    department_name VARCHAR(255) NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    description TEXT,
-    contact_email VARCHAR(100),
-    phone VARCHAR(20),
-    office_location VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE complaints (
