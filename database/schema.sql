@@ -1,3 +1,6 @@
+CREATE DATABASE SUAPDB;
+USE SUAPDB;
+
 CREATE TABLE users (
     user_id VARCHAR(100) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -31,6 +34,5 @@ CREATE TABLE complaints (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (student_id) REFERENCES users(user_id),
-    FOREIGN KEY (department_id) REFERENCES departments(department_id)
+    FOREIGN KEY (student_id) REFERENCES users(user_id)
 );
