@@ -14,7 +14,9 @@ function Dashboard() {
         <ul>
           <li><Link to='/departments'>Go to departments</Link></li>
           <li><Link to='/complaints/create'>Register Complaint</Link></li>
-          <li><Link to='/complaints'>View complaints</Link></li>
+          <li><Link to='/complaints'>View Complaints</Link></li>
+          <li><Link to='/notices'>View Notices</Link></li>
+          <li><Link to='/notices/create'>Create Notices</Link></li>
         </ul>
       </nav>
     </div>

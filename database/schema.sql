@@ -36,3 +36,16 @@ CREATE TABLE complaints (
 
     FOREIGN KEY (student_id) REFERENCES users(user_id)
 );
+
+CREATE TABLE notices (
+    notice_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    department_id INT,
+    department_name VARCHAR(100),
+    created_by INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (department_id) REFERENCES departments(department_id),
+    FOREIGN KEY (created_by) REFERENCES users(user_id)
+);

@@ -46,7 +46,7 @@ router.post('/login',async (req,res,next)=>{
         );
         if(rows.length==0){
             const err=new Error('Invalid credentials');
-            err.status(401);
+            err.status=401;
             return next(err);
         }
         const user=rows[0];
@@ -57,7 +57,7 @@ router.post('/login',async (req,res,next)=>{
             return next(err);
         }
         const token=jwt.sign(
-            {id:user.user_id, email:user.email},
+            {id:user.user_id, role:user.role},
             process.env.JWT_SECRET,
             {expiresIn:'1d'}
         );

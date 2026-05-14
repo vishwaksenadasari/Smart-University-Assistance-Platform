@@ -6,6 +6,8 @@ import Departments from "./pages/Departments"
 import PrivateRoute from "./components/PrivateRoute";
 import CreateComplaints from "./pages/CreateComplaints";
 import TrackComplaints from "./pages/TrackComplaints";
+import ViewNotices from "./pages/ViewNotices";
+import CreateNotices from "./pages/CreateNotices";
 
 function App() {
   const token=localStorage.getItem('token');
@@ -19,6 +21,8 @@ function App() {
         <Route path='/departments' element={<PrivateRoute><Departments /></PrivateRoute>} />
         <Route path='/complaints/create' element={<PrivateRoute><CreateComplaints /></PrivateRoute>} />
         <Route path='/complaints' element={<PrivateRoute><TrackComplaints /></PrivateRoute>} />
+        <Route path="/notices" element={<PrivateRoute><ViewNotices /></PrivateRoute>} />
+        <Route path="/notices/create" element={<PrivateRoute><CreateNotices /></PrivateRoute>} />
       </Routes>
     </Router>
   );
