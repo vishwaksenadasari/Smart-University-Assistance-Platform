@@ -17,9 +17,9 @@ function Signup(){
             return setError('All fields are required');
         }
         try{
-            await api.post('/auth/signup',{user_id,name,email,password});
-            alert('Account created successfully. Please Login');
-            navigate('/login');
+            const res = await api.post('/auth/signup',{user_id,name,email,password});
+            alert(res.data?.message || 'otp sent succesfully');
+            navigate('/verify-otp',{state: {email:email , replace:true}});
         }catch(err){
             setError(err.response?.data?.error || 'Signup failed');
         }

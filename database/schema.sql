@@ -49,3 +49,15 @@ CREATE TABLE notices (
     FOREIGN KEY (department_id) REFERENCES departments(department_id),
     FOREIGN KEY (created_by) REFERENCES users(user_id)
 );
+
+CREATE TABLE help_articles (
+    article_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    category VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE users
+ADD COLUMN is_verified BOOLEAN DEFAULT FALSE,
+ADD COLUMN otp VARCHAR(10);

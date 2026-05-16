@@ -19,9 +19,17 @@ function Login(){
       const {data}=await api.post('/auth/login',{user_id,email,password});
       localStorage.setItem('token',data.token);
       
-      navigate('/dashboard');
+      navigate('/dashboard',{replace:true});
     }catch(err){
-      setError(err.response?.data?.error || 'Login failed');
+      const msg=err.response?.data?.message || res.response?.data?.error;
+      if(msg==='please verify email first.'){
+        const res=await api.post('/auth/verify-email',{user_id,email});
+        alert(res.data?.message || 'otp sent successfully');
+        navigate('/verify-otp',{state:{email:email, replace:true}});
+      }
+      else{
+        setError(msg || 'login failed');
+      }
     }
   }
   return (

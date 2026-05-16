@@ -19,3 +19,4 @@ insert into complaints (title,description) values
 
 insert into notices (title,description) values
 ('Example notice title', 'Example notice description');
+
