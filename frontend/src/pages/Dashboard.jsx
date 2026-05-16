@@ -10,15 +10,16 @@ function Dashboard() {
     <div>
         <h2>welcome to dashboard</h2>
         <button onClick={handleLogout}>Logout</button>
-      <nav>
-        <ul>
-          <li><Link to='/departments'>Go to departments</Link></li>
-          <li><Link to='/complaints/create'>Register Complaint</Link></li>
-          <li><Link to='/complaints'>View Complaints</Link></li>
-          <li><Link to='/notices'>View Notices</Link></li>
-          <li><Link to='/notices/create'>Create Notices</Link></li>
-        </ul>
-      </nav>
+          <nav>
+            <ul>
+              <li><Link to='/departments'>Go to departments</Link></li>
+              <li><Link to='/complaints/create'>Register Complaint</Link></li>
+              <li><Link to='/complaints'>View Complaints</Link></li>
+              <li><Link to='/notices'>View Notices</Link></li>
+              <li><Link to='/notices/create'>Create Notices</Link></li>
+              <li><Link to='/search'>Search Information</Link></li>
+            </ul>
+          </nav>
     </div>
   );
 }

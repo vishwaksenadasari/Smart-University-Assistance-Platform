@@ -10,12 +10,10 @@
 
 import { useState } from "react";
 import api from '../api/axios'
-import { useNavigate } from "react-router-dom";
 
 function CreateNotices(){
     const [title,setTitle]=useState('');
     const [description,setDescription]=useState('');
-    const navigate=useNavigate();
     const [error,setError]=useState('');
     async function handleNotices(){
         if(!title || !description){
