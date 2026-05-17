@@ -2,6 +2,7 @@ const express=require('express');
 const router=express.Router();
 const db=require('../config/db');
 const auth =require('../middleware/auth')
+const sendEmail =require('../services/mailService');
 router.get('/',auth,async (req,res,next)=>{
     try{
         const [rows]=await db.query('select * from complaints where student_id=?',
@@ -43,6 +44,12 @@ router.post('/',auth, async (req,res,next)=>{
         const [rows]=await db.query('select * from complaints where complaint_id=?',
             [results.insertId]
         );
+        await sendEmail(
+            req.user.email,
+            'Complaint Submitted',
+            `Hello user,
+            Your complaint ${results.insertId} has successfully submitted.`
+        )
         res.status(201).json(rows[0]);
     }catch(err){
         next(err);

@@ -61,3 +61,12 @@ CREATE TABLE help_articles (
 ALTER TABLE users
 ADD COLUMN is_verified BOOLEAN DEFAULT FALSE,
 ADD COLUMN otp VARCHAR(10);
+
+CREATE TABLE login_activity (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id VARCHAR(50) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  login_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  ip_address VARCHAR(50),
+  user_agent TEXT
+);

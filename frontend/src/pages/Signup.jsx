@@ -19,7 +19,7 @@ function Signup(){
         try{
             const res = await api.post('/auth/signup',{user_id,name,email,password});
             alert(res.data?.message || 'otp sent succesfully');
-            navigate('/verify-otp',{state: {email:email , replace:true}});
+            navigate('/verify-otp',{state: {email:email }, replace:true});
         }catch(err){
             setError(err.response?.data?.error || 'Signup failed');
         }

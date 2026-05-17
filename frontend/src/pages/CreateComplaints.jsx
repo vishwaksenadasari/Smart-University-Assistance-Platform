@@ -14,6 +14,7 @@ function CreateComplaints(){
         try{
             await api.post('/complaints',{title,description});
             setError('');
+            alert('complaint created successfully');
             navigate('/complaints');
         }catch(err){
             setError(err.response?.data?.error || 'Complaint submission failed');

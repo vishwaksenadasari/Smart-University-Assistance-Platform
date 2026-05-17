@@ -15,17 +15,20 @@ function Login(){
     if(!user_id || !email || !password){
       return setError('All fields are mandatory');
     }
+    const cleanUserId = user_id.trim();
+    const cleanEmail = email.trim();
+
     try{
-      const {data}=await api.post('/auth/login',{user_id,email,password});
+      const {data}=await api.post('/auth/login',{user_id: cleanUserId, email: cleanEmail, password});
       localStorage.setItem('token',data.token);
       
       navigate('/dashboard',{replace:true});
     }catch(err){
-      const msg=err.response?.data?.message || res.response?.data?.error;
-      if(msg==='please verify email first.'){
-        const res=await api.post('/auth/verify-email',{user_id,email});
+      const msg = err.response?.data?.message || err.response?.data?.error || 'Login failed';
+      if(msg === 'please verify email first.'){
+        const res=await api.post('/auth/verify-email',{user_id: cleanUserId, email: cleanEmail});
         alert(res.data?.message || 'otp sent successfully');
-        navigate('/verify-otp',{state:{email:email, replace:true}});
+        navigate('/verify-otp', { state: { email: cleanEmail }, replace: true });
       }
       else{
         setError(msg || 'login failed');
@@ -43,6 +46,7 @@ function Login(){
         if(e.key==='Enter') handleLogin();
       }} />
       <button onClick={handleLogin}>Login</button>
+      <p><Link to='/forgot-password'>forgot password?</Link></p>
       <p>Don't have account?<Link to='/signup'>Sign up</Link></p>
     </div>
   );
