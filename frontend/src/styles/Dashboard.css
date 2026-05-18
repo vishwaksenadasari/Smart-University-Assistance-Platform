@@ -1,0 +1,17 @@
+.admin-dashboard-container {
+    display: flex;
+    background-color: #f3f4f6;
+    min-height: 100vh;
+}
+
+.admin-main-content {
+    flex: 1;
+    padding: 32px;
+}
+
+.admin-main-content h2 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin: 0;
+}

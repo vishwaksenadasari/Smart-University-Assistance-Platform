@@ -43,7 +43,7 @@ CREATE TABLE notices (
     description TEXT,
     department_id INT,
     department_name VARCHAR(100),
-    created_by INT,
+    created_by VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (department_id) REFERENCES departments(department_id),

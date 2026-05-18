@@ -12,26 +12,42 @@ import Search from "./pages/Search";
 import VerifyOtp from "./pages/verifyOtp";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassowrd";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminLayout from "./components/AdminLayout";
+import MainLayout from "./components/MainLayout";
 
 function App() {
   const token=localStorage.getItem('token');
   return (
     <Router>
       <Routes>
+
         <Route path='/' element={token ? <Navigate to='/dashboard' /> : <Navigate to='/login' />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/verify-otp' element={<VerifyOtp />}/>
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-        <Route path='/departments' element={<PrivateRoute><Departments /></PrivateRoute>} />
-        <Route path='/complaints/create' element={<PrivateRoute><CreateComplaints /></PrivateRoute>} />
-        <Route path='/complaints' element={<PrivateRoute><TrackComplaints /></PrivateRoute>} />
-        <Route path="/notices" element={<PrivateRoute><ViewNotices /></PrivateRoute>} />
-        <Route path="/notices/create" element={<PrivateRoute><CreateNotices /></PrivateRoute>} />
-        <Route path="/search" element={<PrivateRoute><Search /></PrivateRoute>} />
-      </Routes>
+        
+        <Route path='/' element={<PrivateRoute><MainLayout /></PrivateRoute>} >
+          <Route index element={<Dashboard />} />
+          <Route path='dashboard' element={<Dashboard />} />
+          <Route path='departments' element={<Departments />} />
+          <Route path='complaints/create' element={<CreateComplaints />} />
+          <Route path='complaints' element={<TrackComplaints />} />
+          <Route path="notices" element={<ViewNotices />} />
+          <Route path="notices/create" element={<CreateNotices />} />
+          <Route path="search" element={<Search />} />
+        </Route>
+
+        {/* Admin Group with Persistent Sidebar */}
+        <Route path="/admin" element={<PrivateRoute><AdminLayout /></PrivateRoute>}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="complaints" element={<div>Manage Complaints Page</div>} />
+          <Route path="notices" element={<div>Manage Notices Page</div>} />
+        </Route>
+        </Routes>
     </Router>
   );
 }
