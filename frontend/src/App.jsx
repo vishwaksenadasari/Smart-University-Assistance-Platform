@@ -12,8 +12,6 @@ import Search from "./pages/Search";
 import VerifyOtp from "./pages/verifyOtp";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassowrd";
-import AdminDashboard from "./pages/AdminDashboard";
-import AdminLayout from "./components/AdminLayout";
 import MainLayout from "./components/MainLayout";
 
 function App() {
@@ -38,14 +36,6 @@ function App() {
           <Route path="notices" element={<ViewNotices />} />
           <Route path="notices/create" element={<CreateNotices />} />
           <Route path="search" element={<Search />} />
-        </Route>
-
-        {/* Admin Group with Persistent Sidebar */}
-        <Route path="/admin" element={<PrivateRoute><AdminLayout /></PrivateRoute>}>
-          <Route index element={<AdminDashboard />} />
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="complaints" element={<div>Manage Complaints Page</div>} />
-          <Route path="notices" element={<div>Manage Notices Page</div>} />
         </Route>
         </Routes>
     </Router>
