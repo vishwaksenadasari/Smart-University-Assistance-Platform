@@ -56,20 +56,35 @@ router.post('/',auth, async (req,res,next)=>{
     }
 });
 
-router.put('/:id', async (req,res,next)=>{
+router.put('/:id', auth, async (req,res,next)=>{
     try{
-        const [existing]=await db.query('select * from complaints where student_id=? and complaint_id=?',
-            [req.user.id,req.params.id]
+        const {status}=req.body;
+        const [existing]=await db.query('select * from complaints where complaint_id=?',
+            [req.params.id]
         );
         if(existing.length===0){
             const err=new Error('failed to update complaint');
             err.status=404;
             return next(err);
         }
-        const updatedstatus=req.params.status !== undefined ? req.params.status : existing[0].status;
-        await db.query('update todos set status=? where student_id=? and complaint_id=?',
-            [updatedstatus,req.user.id,req.params.id]
+        const updatedstatus=status !== undefined ? status : existing[0].status;
+        await db.query('update complaints set status=? where complaint_id=?',
+            [updatedstatus,req.params.id]
         );
+        const [compRows] = await db.query('select * from complaints where complaint_id=?',
+            [req.params.id]
+        );
+        const [userRows] = await db.query('select * from users where user_id=?',
+            [compRows[0].student_id]
+        );
+        res.json({message:'complaint updated successfully'});
+        await sendEmail(
+            userRows[0].email,
+            'Complaint Status Updated',
+            `Hello ${userRows[0].name},
+            your complaint with complaint Id: ${req.params.id}
+            is status updated to ${status}.`
+        )
     }catch(err){
         next(err);
     }

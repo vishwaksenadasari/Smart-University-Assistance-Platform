@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from '../api/axios'
+import {jwtDecode} from 'jwt-decode'
 
 function Login(){
 
@@ -21,9 +22,13 @@ function Login(){
     try{
       const {data}=await api.post('/auth/login',{user_id: cleanUserId, email: cleanEmail, password});
       localStorage.setItem('token',data.token);
-      
-      navigate('/dashboard',{replace:true});
-    }catch(err){
+      const decoded=jwtDecode(data.token);
+      if(decoded.role==='staff'){
+        navigate('/admin/dashboard',{replace:true});
+      }else{
+        navigate('/dashboard',{replace:true});
+      }
+      }catch(err){
       const msg = err.response?.data?.message || err.response?.data?.error || 'Login failed';
       if(msg === 'please verify email first.'){
         const res=await api.post('/auth/verify-email',{user_id: cleanUserId, email: cleanEmail});

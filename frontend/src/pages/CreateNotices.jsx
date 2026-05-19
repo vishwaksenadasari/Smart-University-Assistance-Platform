@@ -10,11 +10,14 @@
 
 import { useState } from "react";
 import api from '../api/axios'
+import { useNavigate } from "react-router-dom";
+
 
 function CreateNotices(){
     const [title,setTitle]=useState('');
     const [description,setDescription]=useState('');
     const [error,setError]=useState('');
+    const navigate=useNavigate();
     async function handleNotices(){
         if(!title || !description){
             return setError('All fields are mandatory');
@@ -25,6 +28,7 @@ function CreateNotices(){
             setDescription('');
             setError('');
             alert('notice created successfully');
+            navigate('/admin/notices');
         }catch(err){
             setError(err.response?.data?.Error || 'failed to create notice');
         }
