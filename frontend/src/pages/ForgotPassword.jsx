@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from '../api/axios'
+import "../styles/ForgotPassword.css";
 
 function ForgotPassword(){
     //const [password,setPassword]=useState('');
@@ -23,16 +24,22 @@ function ForgotPassword(){
         }
     }
     return(
-        <div>
-            <h2>Forgot Password</h2>
-            {error && <p style={{color:'red'}}>{error}</p>}
-            <input placeholder="Roll Number" value={user_id} onChange={e=>setUser_id(e.target.value)} />
-            <input placeholder="email" value={email} onChange={e=>setEmail(e.target.value)}
-            onKeyDown={e=>{
-                if(e.key==='Enter') handleReset();
-            }}
-            />
-            <button onClick={handleReset}>Send Otp</button>
+        <div className="forgot-password-page">
+            <div className="forgot-password-container">
+                <h2 className="forgot-password-title">Forgot Password</h2>
+                {error && <p className="forgot-password-error">{error}</p>}
+                <div className="input-group">
+                    <input className="input-field" placeholder="Roll Number" value={user_id} onChange={e=>setUser_id(e.target.value)} />
+                </div>
+                <div className="input-group">
+                    <input className="input-field" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)}
+                    onKeyDown={e=>{
+                        if(e.key==='Enter') handleReset();
+                    }}
+                    />
+                </div>
+                <button className="btn-primary" onClick={handleReset}>Send OTP</button>
+            </div>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
 import api from '../api/axios'
+import "../styles/signup.css";
 
 function Signup(){
 
@@ -25,17 +26,29 @@ function Signup(){
         }
     }
     return (
-        <div>
-            <h2>Create Account</h2>
-            {error && <p style={{color:'red'}}>{error}</p>}
-            <input placeholder="Roll Number" value={user_id} onChange={e=>setUser_id(e.target.value)} />
-            <input placeholder="Name" value={name} onChange={e=>setName(e.target.value)} />
-            <input placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
-            <input placeholder="password" value={password} onChange={e=>setPassword(e.target.value)} onKeyDown={(e)=>{
-                if(e.key==='Enter') handlerSignup();
-            }} />
-            <button onClick={handlerSignup}>Sign up</button>
-            <p>Already have Account?<Link to='/login'>Login</Link></p>
+        <div className="signup-page">
+            <div className="signup-container">
+                <h2 className="signup-title">Create Account</h2>
+                {error && <p className="signup-error">{error}</p>}
+                <div className="input-group">
+                    <input className="input-field" placeholder="Roll Number" value={user_id} onChange={e=>setUser_id(e.target.value)} />
+                </div>
+                <div className="input-group">
+                    <input className="input-field" placeholder="Name" value={name} onChange={e=>setName(e.target.value)} />
+                </div>
+                <div className="input-group">
+                    <input className="input-field" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
+                </div>
+                <div className="input-group">
+                    <input className="input-field" type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} onKeyDown={(e)=>{
+                        if(e.key==='Enter') handlerSignup();
+                    }} />
+                </div>
+                <button className="btn-primary" onClick={handlerSignup}>Sign up</button>
+                <div className="auth-links">
+                    <p>Already have an account? <Link to='/login' className="link-text">Login</Link></p>
+                </div>
+            </div>
         </div>
     );
 }
