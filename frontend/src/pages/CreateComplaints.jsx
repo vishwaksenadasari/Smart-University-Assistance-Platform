@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import api from '../api/axios';
 import { useNavigate } from 'react-router-dom';
+import "../styles/CreateComplaints.css";
 
 function CreateComplaints(){
     const [title,setTitle]=useState('');
@@ -21,16 +22,23 @@ function CreateComplaints(){
         }
     }
     return (
-        <div>
-            <h2>Register Complaint</h2>
-            {error && <p style={{color:'red'}}>{error}</p>}
-            <input placeholder='title' value={title} onChange={e=>setTitle(e.target.value)} />
-            <input placeholder='decription' value={description} onChange={e=>setDescription(e.target.value)} 
-            onKeyDown={e=>{
-                if(e.key==='Enter') handleComplaints();
-            }}
-            />
-            <button onClick={handleComplaints}>Submit</button>
+        <div className="create-complaint-page">
+            <div className="create-complaint-container">
+                <h2 className="create-complaint-title">Register Complaint</h2>
+                {error && <p className="create-complaint-error">{error}</p>}
+                <div className="input-group">
+                    <input className="input-field" placeholder='Title' value={title} onChange={e=>setTitle(e.target.value)} />
+                </div>
+                <div className="input-group">
+                    <textarea 
+                        className="input-field textarea-field" 
+                        placeholder='Describe your issue in detail...' 
+                        value={description} 
+                        onChange={e=>setDescription(e.target.value)} 
+                    />
+                </div>
+                <button className="btn-submit" onClick={handleComplaints}>Submit Issue</button>
+            </div>
         </div>
     );
 }

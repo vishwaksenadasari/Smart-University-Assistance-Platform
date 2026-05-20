@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+.track-complaints-page {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 24px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.track-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    gap: 16px;
+}
+
+.track-title {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: #1A1A1A;
+    margin: 0;
+}
+
+.btn-create {
+    padding: 12px 24px;
+    background-color: #2D6A4F;
+    color: white;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.22s ease;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.btn-create:hover {
+    background-color: #1B4332;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+}
+
+.complaints-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.complaint-card {
+    background: #FFFFFF;
+    border: 1.5px solid #E2DDD6;
+    border-radius: 14px;
+    padding: 24px;
+    transition: all 0.22s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.complaint-card:hover {
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    border-color: #2D6A4F;
+}
+
+.complaint-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.complaint-id-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    color: #1A1A1A;
+    margin: 0;
+}
+
+.status-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-badge.pending { background: #FEF3EC; color: #E07A3F; }
+.status-badge.open { background: #EFF6FF; color: #3B82F6; }
+.status-badge.resolved { background: #E9F5EF; color: #2D6A4F; }
+.status-badge.rejected { background: #FEF2F2; color: #DC2626; }
+
+.loading-text, .empty-text, .error-text {
+    text-align: center;
+    padding: 40px;
+    color: #8E8E8E;
+}
+
+.error-text {
+    color: #DC2626;
+    background: #FEF2F2;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
