@@ -27,7 +27,7 @@ function AdminSidebar(){
     return (
         <div className="admin-sidebar">
             <div className="sidebar-header">
-                <h1>Admin Panel</h1>
+                <h1>Admin<span>Panel</span></h1>
             </div>
             <nav className="sidebar-nav">
                 <ul>

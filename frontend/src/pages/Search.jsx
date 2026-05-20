@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from '../api/axios'
+import "../styles/search.css";
 
 function Search(){
     const [query,setQuery]=useState('');
@@ -15,24 +16,32 @@ function Search(){
         }
     }
     return (
-        <div>
-            <h2>Search Information</h2>
-            {error && <p style={{color:'red'}}>{error}</p> }
+        <div className="search-page">
+            <h2 className="search-title">Search Information</h2>
+            {error && <p className="search-error">{error}</p> }
 
-            <input placeholder="search..." value={query} onChange={e=>setQuery(e.target.value)} 
-                onKeyDown={e=>{
-                    if(e.key==='Enter') handleSearch();
-                }}
-            />
-            <button onClick={handleSearch} type="submit">Search</button>
+            <div className="search-controls">
+                <input 
+                    className="search-input-field"
+                    placeholder="Search for articles, guides..." 
+                    value={query} 
+                    onChange={e=>setQuery(e.target.value)} 
+                    onKeyDown={e=>{
+                        if(e.key==='Enter') handleSearch();
+                    }}
+                />
+                <button className="search-btn" onClick={handleSearch} type="submit">Search</button>
+            </div>
 
-            {results.map(result=>(
-                <div key={result.article_id}>
-                    <h3>{result.title}</h3>
-                    <p>{result.content}</p>
-                    <h5>{result.category}</h5>
-                </div>
-            ))}
+            <div className="search-results">
+                {results.map(result=>(
+                    <div key={result.article_id} className="search-result-card">
+                        <h3 className="result-title">{result.title}</h3>
+                        <p className="result-content">{result.content}</p>
+                        <span className="result-category">{result.category}</span>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

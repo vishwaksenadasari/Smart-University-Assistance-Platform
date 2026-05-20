@@ -1,28 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap');
+
 .admin-sidebar {
-    width: 256px;
+    width: 260px;
     min-height: 100vh;
-    background-color: #111827;
-    color: white;
+    background-color: #FFFFFF;
+    color: #4A4A4A;
     display: flex;
     flex-direction: column;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+    border-right: 1.5px solid #E2DDD6;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.03);
+    position: sticky;
+    top: 0;
 }
 
 .sidebar-header {
-    padding: 24px;
-    border-bottom: 1px solid #374151;
+    padding: 32px 24px;
+    border-bottom: 1.5px solid #E2DDD6;
 }
 
 .sidebar-header h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #60a5fa;
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1A1A1A;
     margin: 0;
+    letter-spacing: -.02em;
+}
+
+.sidebar-header h1 span {
+    color: #2D6A4F;
 }
 
 .sidebar-nav {
     flex: 1;
-    padding: 16px;
+    padding: 24px 16px;
 }
 
 .sidebar-nav ul {
@@ -32,46 +43,52 @@
 }
 
 .sidebar-nav li {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .sidebar-nav a {
     display: block;
-    padding: 12px 16px;
-    border-radius: 8px;
+    padding: 12px 18px;
+    border-radius: 12px;
     text-decoration: none;
-    color: #9ca3af;
+    color: #4A4A4A;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 500;
-    transition: all 0.2s;
+    font-size: 0.95rem;
+    transition: all 0.22s ease;
 }
 
 .sidebar-nav a:hover {
-    background-color: #1f2937;
-    color: white;
+    background-color: #E9F5EF;
+    color: #2D6A4F;
 }
 
 .sidebar-nav a.active {
-    background-color: #2563eb;
+    background-color: #2D6A4F;
     color: white;
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
 }
 
 .sidebar-footer {
-    padding: 16px;
-    border-top: 1px solid #374151;
+    padding: 24px 16px;
+    border-top: 1.5px solid #E2DDD6;
 }
 
 .logout-btn {
     width: 100%;
-    padding: 12px;
+    padding: 12px 16px;
     background: none;
     border: none;
-    color: #f87171;
+    color: #E07A3F;
     text-align: left;
-    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 12px;
+    transition: all 0.22s ease;
 }
 
 .logout-btn:hover {
-    background-color: rgba(127, 29, 29, 0.2);
+    background-color: #FEF3EC;
 }

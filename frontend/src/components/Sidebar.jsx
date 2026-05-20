@@ -37,7 +37,7 @@ function Sidebar(){
     return (
         <div className="admin-sidebar">
             <div className="sidebar-header">
-                <h1>Student Panel</h1>
+                <h1>Student<span>Panel</span></h1>
             </div>
             <nav className="sidebar-nav">
                 <ul>
