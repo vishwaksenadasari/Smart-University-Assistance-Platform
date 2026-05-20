@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+.manage-complaints-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.manage-header {
+    margin-bottom: 32px;
+}
+
+.manage-title {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: #1A1A1A;
+    margin: 0;
+}
+
+.complaints-table-container {
+    background: #FFFFFF;
+    border: 1.5px solid #E2DDD6;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+}
+
+.complaints-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.complaints-table th {
+    background-color: #F7F6F2;
+    padding: 18px 24px;
+    font-weight: 600;
+    color: #4A4A4A;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1.5px solid #E2DDD6;
+}
+
+.complaints-table td {
+    padding: 18px 24px;
+    border-bottom: 1px solid #F0EFEA;
+    color: #1A1A1A;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.complaints-table tr:last-child td {
+    border-bottom: none;
+}
+
+.complaints-table tr:hover {
+    background-color: #FBFBFA;
+}
+
+.status-select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #E2DDD6;
+    background-color: #FFFFFF;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #4A4A4A;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.status-select:focus {
+    border-color: #2D6A4F;
+    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+}
+
+.id-cell { 
+    font-weight: 600; 
+    color: #2D6A4F; 
+    white-space: nowrap;
+}
+
+.title-cell { font-weight: 600; }
+.student-id-cell { font-family: monospace; color: #6B7280; font-size: 0.9rem; }
+
+.manage-error { 
+    color: #DC2626; 
+    background: #FEF2F2; 
+    padding: 12px; 
+    border-radius: 8px; 
+    margin-bottom: 20px; 
+}

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import api from '../api/axios'
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "../styles/VerifyOtp.css";
 
 function VerifyOtp(){
     const [otp,setOtp]=useState('');
@@ -54,18 +56,28 @@ function VerifyOtp(){
     }
     
     return (
-        <div>
-            <h2>Enter Otp</h2>
-            {error && <p style={{color:'red'}}>{error}</p>}
+        <div className="verify-otp-page">
+            <div className="verify-otp-container">
+                <h2 className="verify-otp-title">Enter OTP</h2>
+                <p className="verify-otp-subtitle">A verification code has been sent to <strong>{email}</strong></p>
+                {error && <p className="verify-otp-error">{error}</p>}
 
-            <input placeholder="otp" value={otp} onChange={e=>setOtp(e.target.value)} 
-            onKeyDown={e=>{
-                if(e.key==='Enter') handleOtp();
-            }} />
-            <button onClick={handleOtp}>Verify</button>
-            <button onClick={handleResendOtp} disabled={timer > 0} style={{marginLeft: '10px'}}>
-                {timer > 0 ? `Resend OTP (${timer}s)` : 'Resend OTP'}
-            </button>
+                <div className="input-group">
+                    <input className="input-field" placeholder="Enter OTP" value={otp} onChange={e=>setOtp(e.target.value)} 
+                    onKeyDown={e=>{
+                        if(e.key==='Enter') handleOtp();
+                    }} />
+                </div>
+                <button className="btn-primary" onClick={handleOtp}>Verify</button>
+                <div className="otp-actions">
+                    <button className="resend-btn" onClick={handleResendOtp} disabled={timer > 0}>
+                        {timer > 0 ? `Resend OTP (${timer}s)` : 'Resend OTP'}
+                    </button>
+                </div>
+                <div className="auth-links">
+                    <Link to="/login" className="link-text">Back to Login</Link>
+                </div>
+            </div>
         </div>
     );
 }

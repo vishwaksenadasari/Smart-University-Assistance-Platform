@@ -1,43 +1,53 @@
 
-
-{/*
-    at present create notices link will visible to all users 
-    but except staff 
-    other users cannot able to create notices
-    */}
-
-
-
 import { useState } from "react";
 import api from '../api/axios'
+import { useNavigate } from "react-router-dom";
+import "../styles/CreateNotices.css";
+
 
 function CreateNotices(){
     const [title,setTitle]=useState('');
     const [description,setDescription]=useState('');
     const [error,setError]=useState('');
+    const navigate=useNavigate();
     async function handleNotices(){
         if(!title || !description){
             return setError('All fields are mandatory');
         }
+        const token = localStorage.getItem('token');
+        const headers = { 
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
         try{
-            await api.post('/notices',{title,description});
+            await api.post('/notices',{title,description}, { headers });
             setTitle('');
             setDescription('');
             setError('');
             alert('notice created successfully');
+            navigate('/admin/notices');
         }catch(err){
             setError(err.response?.data?.Error || 'failed to create notice');
         }
     }
     return (
-        <div>
-            <h2>Create Notice</h2>
-            {error && <p style={{color:'red'}}>{error}</p>}
-            <input placeholder="title" value={title} onChange={e=>setTitle(e.target.value)} />
-            <input placeholder="description" value={description} onChange={e=>setDescription(e.target.value)} onKeyDown={e=>{
-                if(e.key==='Enter') handleNotices();
-            }} />
-            <button onClick={handleNotices} type="submit">submit</button>
+        <div className="create-notice-page">
+            <div className="create-notice-container">
+                <h2 className="create-notice-title">Post New Notice</h2>
+                {error && <p className="create-notice-error">{error}</p>}
+                <div className="input-group">
+                    <input className="input-field" placeholder="Notice Title" value={title} onChange={e=>setTitle(e.target.value)} />
+                </div>
+                <div className="input-group">
+                    <textarea 
+                        className="input-field textarea-field" 
+                        placeholder="Notice Content" 
+                        value={description} 
+                        onChange={e=>setDescription(e.target.value)} 
+                    />
+                </div>
+                <button className="btn-submit" onClick={handleNotices} type="submit">Submit Notice</button>
+            </div>
         </div>
     );
 }

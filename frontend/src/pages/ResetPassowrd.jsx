@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from '../api/axios'
 import { useLocation, useNavigate } from "react-router-dom";
+import "../styles/ResetPassword.css";
 
 function ResetPassword(){
     const [password,setPassword]=useState('');
@@ -36,14 +37,23 @@ function ResetPassword(){
         }
     }
     return (
-        <div>
-            {error && <p style={{color:'red'}}>{error}</p>}
-            <input placeholder="new password" value={password} onChange={e=>setPassword(e.target.value)} />
-            <input placeholder="confirm password" value={confirmPassword} onChange={e=>setConfirmPassword(e.target.value)} 
-            onKeyDown={e=>{
-                if(e.key==='Enter') handleReset();
-            }} />
-            <button onClick={handleReset} disabled={loading}>{loading ? 'Updating...' : 'Submit'}</button>
+        <div className="reset-password-page">
+            <div className="reset-password-container">
+                <h2 className="reset-password-title">Reset Password</h2>
+                {error && <p className="reset-password-error">{error}</p>}
+                <div className="input-group">
+                    <input className="input-field" type="password" placeholder="New Password" value={password} onChange={e=>setPassword(e.target.value)} />
+                </div>
+                <div className="input-group">
+                    <input className="input-field" type="password" placeholder="Confirm Password" value={confirmPassword} onChange={e=>setConfirmPassword(e.target.value)} 
+                    onKeyDown={e=>{
+                        if(e.key==='Enter') handleReset();
+                    }} />
+                </div>
+                <button className="btn-primary" onClick={handleReset} disabled={loading}>
+                    {loading ? 'Updating...' : 'Submit'}
+                </button>
+            </div>
         </div>
     )
 }

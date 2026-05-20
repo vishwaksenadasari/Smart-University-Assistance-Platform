@@ -13,6 +13,10 @@ import VerifyOtp from "./pages/verifyOtp";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassowrd";
 import MainLayout from "./components/MainLayout";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminLayout from "./components/AdminLayout";
+import ManageComplaints from "./pages/ManageComplaints";
+import ManageNotices from "./pages/ManageNotices";
 
 function App() {
   const token=localStorage.getItem('token');
@@ -27,15 +31,24 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         
-        <Route path='/' element={<PrivateRoute><MainLayout /></PrivateRoute>} >
+        <Route path='/' element={<PrivateRoute requiredRole='student'><MainLayout /></PrivateRoute>} >
           <Route index element={<Dashboard />} />
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='departments' element={<Departments />} />
           <Route path='complaints/create' element={<CreateComplaints />} />
           <Route path='complaints' element={<TrackComplaints />} />
           <Route path="notices" element={<ViewNotices />} />
-          <Route path="notices/create" element={<CreateNotices />} />
           <Route path="search" element={<Search />} />
+        </Route>
+
+        {/* Admin Group with Persistent Sidebar */}
+        <Route path="/admin" element={<PrivateRoute requiredRole='staff'><AdminLayout /></PrivateRoute>}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path='search' element={<Search />} />
+          <Route path="complaints" element={<ManageComplaints />} />
+          <Route path="notices" element={<ManageNotices />} />
+          <Route path="notices/create" element={<CreateNotices />} />
         </Route>
         </Routes>
     </Router>

@@ -1,7 +1,8 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import {Link} from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import api from '../api/axios';
+import "../styles/TrackComplaints.css";
+
 function TrackComplaints(){
     const [complaints,setComplaints]=useState([]);
     const [error,setError]=useState('');
@@ -22,22 +23,34 @@ function TrackComplaints(){
     },[]);
 
     return (
-        <div>
-            <h2>Complaints</h2>
-            <Link to='/complaints/create' style={{color:'crimson',textDecoration:'none',marginLeft:'120px'}}>+ Create New Complaint</Link>
+        <div className="track-complaints-page">
+            <div className="track-header">
+                <h2 className="track-title">Your Complaints</h2>
+                <Link to='/complaints/create' className="btn-create">+ Create New Complaint</Link>
+            </div>
 
-            {error && <p style={{color:'red'}}>{error}</p>}
-            {loading && <p>Loding complaints...</p>}
+            {error && <p className="error-text">{error}</p>}
+            {loading && <p className="loading-text">Loading your complaints...</p>}
 
-            {!loading && complaints.length===0 && <p>No Complaints yet</p>}
+            {!loading && complaints.length === 0 && !error && (
+                <p className="empty-text">No complaints found. If you have an issue, please register it.</p>
+            )}
 
-            {complaints.map(c=>(
-                <div key={c.complaint_id} style={{border:'5px solid',borderRadius:'5px',margin:'5px',padding:'10px',marginTop:'20px'}}>
-                    <h3>{c.complaint_id}. {c.title}</h3>
-                    <h4>{c.description}</h4>
-                    <h4>{c.status}</h4>
-                </div>
-            ))}
+            <div className="complaints-list">
+                {complaints.map(c => (
+                    <div key={c.complaint_id} className="complaint-card">
+                        <div className="complaint-card-header">
+                            <h3 className="complaint-id-title">
+                                #{c.complaint_id} {c.title}
+                            </h3>
+                            <span className={`status-badge ${c.status?.toLowerCase().replace(' ', '')}`}>
+                                {c.status}
+                            </span>
+                        </div>
+                        <p className="complaint-description">{c.description}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
