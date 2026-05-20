@@ -45,6 +45,7 @@ function App() {
         <Route path="/admin" element={<PrivateRoute requiredRole='staff'><AdminLayout /></PrivateRoute>}>
           <Route index element={<AdminDashboard />} />
           <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path='search' element={<Search />} />
           <Route path="complaints" element={<ManageComplaints />} />
           <Route path="notices" element={<ManageNotices />} />
           <Route path="notices/create" element={<CreateNotices />} />

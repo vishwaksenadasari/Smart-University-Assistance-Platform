@@ -38,14 +38,18 @@ function ManageNotices(){
                             <th>Notice Id</th>
                             <th>Title</th>
                             <th>Description</th>
+                            <th>Created At</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {notices.map(n=>(
+                        {notices
+                        .sort((a,b)=> new Date(b.created_at) - new Date(a.created_at))
+                        .map(n=>(
                             <tr key={n.notice_id}>
                                 <td className="id-cell">#{n.notice_id}</td>
                                 <td className="title-cell">{n.title}</td>
                                 <td>{n.description}</td>
+                                <td>{new Date(n.created_at).toLocaleDateString()}</td>
                             </tr>
                         ))}
                     </tbody>

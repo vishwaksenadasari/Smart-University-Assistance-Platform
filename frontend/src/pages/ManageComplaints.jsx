@@ -50,6 +50,7 @@ function ManageComplaints(){
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Registered At</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Student</th>
@@ -58,9 +59,11 @@ function ManageComplaints(){
                         </tr>
                     </thead>
                     <tbody>
-                        {complaints.map(c=>(
+                        {complaints.sort((a,b)=> new Date(b.created_at) - new Date(a.created_at))
+                        .map(c=>(
                             <tr key={c.complaint_id}>
                                 <td className="id-cell">#{c.complaint_id}</td>
+                                <td>{new Date(c.created_at).toLocaleDateString()}</td>
                                 <td className="title-cell">{c.title}</td>
                                 <td>{c.description}</td>
                                 <td className="student-id-cell">{c.student_id}</td>

@@ -10,6 +10,10 @@ function AdminSidebar(){
             path:'/admin/dashboard'
         },
         {
+            name:'Search',
+            path:'/admin/search'
+        },
+        {
             name:'Manage Complaints',
             path:'/admin/complaints'
         },
