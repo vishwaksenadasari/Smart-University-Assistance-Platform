@@ -37,7 +37,9 @@ function TrackComplaints(){
             )}
 
             <div className="complaints-list">
-                {complaints.map(c => (
+                {complaints
+                .sort((a,b)=>new Date(b.created_at) - new Date(a.created_at))
+                .map(c => (
                     <div key={c.complaint_id} className="complaint-card">
                         <div className="complaint-card-header">
                             <h3 className="complaint-id-title">
@@ -48,6 +50,7 @@ function TrackComplaints(){
                             </span>
                         </div>
                         <p className="complaint-description">{c.description}</p>
+                        <p>{new Date(c.created_at).toLocaleDateString()}</p>
                     </div>
                 ))}
             </div>

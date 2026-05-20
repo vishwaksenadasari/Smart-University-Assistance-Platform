@@ -53,10 +53,13 @@ function ViewNotices(){
             )}
 
             <div className="notices-list">
-                {notices.map(notice=>(
+                {notices
+                .sort((a,b)=>new Date(b.created_at) - new Date(a.created_at))
+                .map(notice=>(
                     <div key={notice.notice_id} className="notice-card">
                         <h3 className="notice-title">{notice.title}</h3>
                         <p className="notice-description">{notice.description}</p>    
+                        <p>{new Date(notice.created_at).toLocaleDateString()}</p>
                     </div>
                 ))}
             </div>
