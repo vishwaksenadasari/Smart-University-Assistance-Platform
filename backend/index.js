@@ -12,6 +12,7 @@ const noticesRouter=require('./routes/notices');
 const searchRouter=require('./routes/search');
 const adminRouter=require('./routes/admin');
 const manageRouter=require('./routes/manage');
+const feedbackRouter=require('./routes/feedback');
 app.use(cors({origin:'http://localhost:5173'}));
 
 app.use(express.json());
@@ -23,6 +24,7 @@ app.use('/notices',noticesRouter);
 app.use('/search',searchRouter);
 app.use('/admin',adminRouter);
 app.use('/manage',manageRouter);
+app.use('/feedback',feedbackRouter);
 app.use((req,res)=>{
     res.status(404).json({error: 'route not found' });
 });

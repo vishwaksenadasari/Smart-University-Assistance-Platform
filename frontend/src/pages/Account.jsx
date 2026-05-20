@@ -28,6 +28,9 @@ function Account(){
         (details.role==='student') ? navigate('/manage-account') : navigate('/admin/manage-account');
     }
 
+    function feedback(){
+        (details.role==='student') ? navigate('/feedback') : navigate('/admin/feedback');
+    }
     if (loading) return <div className="account-page"><p>Loading profile...</p></div>;
 
     return (
@@ -53,6 +56,7 @@ function Account(){
                     </div>
                 </div>
                 <button className="btn-modify" onClick={modify}>Edit Profile</button>
+                <button className="btn-modify" onClick={feedback} style={{marginTop:'10px'}}>Send Feedback</button>
             </div>
         </div>
     );

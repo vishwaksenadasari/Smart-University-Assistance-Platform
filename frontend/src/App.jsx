@@ -20,6 +20,7 @@ import ManageNotices from "./pages/ManageNotices";
 import LandingPage from "./pages/LandingPage";
 import ManageAccount from "./pages/ManageAccount";
 import Account from "./pages/Account";
+import Feedback from "./pages/Feedback";
 
 function App() {
   const token=localStorage.getItem('token');
@@ -45,6 +46,7 @@ function App() {
           <Route path="search" element={<Search />} />
           <Route path="account" element={<Account />} />
           <Route path="manage-account" element={<ManageAccount />} />
+          <Route path='feedback' element={<Feedback />} />
         </Route>
 
         {/* Admin Group with Persistent Sidebar */}
@@ -57,6 +59,7 @@ function App() {
           <Route path="notices/create" element={<CreateNotices />} />
           <Route path='account' element={<Account />} />
           <Route path='manage-account' element={<ManageAccount />} />
+          <Route path='feedback' element={<Feedback />} />
         </Route>
         </Routes>
     </Router>
