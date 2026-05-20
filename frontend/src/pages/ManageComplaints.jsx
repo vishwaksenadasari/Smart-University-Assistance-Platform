@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import api from '../api/axios';
+import "../styles/ManageComplaints.css";
 
 function ManageComplaints(){
     const [complaints,setComplaints]=useState([]);
     const [error,setError]=useState('');
+
     async function fetchComplaints(){
+        const token = localStorage.getItem('token');
+        const headers = { 
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
         try{
-            const {data}=await api.get('/admin/complaints');
+            const {data}=await api.get('/admin/complaints', { headers });
             setComplaints(data);
         }catch(err){
             setError(err.response?.data?.error || 'failed to load complaints');
@@ -17,8 +24,13 @@ function ManageComplaints(){
     },[]);
 
     async function updateStatus(id,status){
+        const token = localStorage.getItem('token');
+        const headers = { 
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
         try{
-            await api.put(`/complaints/${id}`,{status});
+            await api.put(`/complaints/${id}`,{status}, { headers });
             alert('complaint updated successfully');
             fetchComplaints();
         }catch(err){
@@ -27,39 +39,49 @@ function ManageComplaints(){
     }
 
     return (
-        <div>
-            <h2>Complaints Table</h2>
-            {error && <p style={{color:'red'}}>{error}</p>}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Complaint Id</th>
-                        <th>Complaint Title</th>
-                        <th>Complaint Description</th>
-                        <th>Student Id</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {complaints.map(c=>(
-                        <tr key={c.complaint_id}>
-                            <td>{c.complaint_id}</td>
-                            <td>{c.title}</td>
-                            <td>{c.description}</td>
-                            <td>{c.student_id}</td>
-                            <td>{c.status}</td>
-                            <td>
-                                <select value={c.status} onChange={(e)=>updateStatus(c.complaint_id,e.target.value)}>
-                                    <option value='pending'>pending</option>
-                                    <option value='in progress'>In progress</option>
-                                    <option value='Resolved'>Resolved</option>
-                                    <option value='Rejected'>Rejected</option>
-                                </select>
-                            </td>
+        <div className="manage-complaints-page">
+            <div className="manage-header">
+                <h2 className="manage-title">Complaints Management</h2>
+            </div>
+            {error && <p className="manage-error">{error}</p>}
+            
+            <div className="complaints-table-container">
+                <table className="complaints-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Student</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {complaints.map(c=>(
+                            <tr key={c.complaint_id}>
+                                <td className="id-cell">#{c.complaint_id}</td>
+                                <td className="title-cell">{c.title}</td>
+                                <td>{c.description}</td>
+                                <td className="student-id-cell">{c.student_id}</td>
+                                <td>{c.status}</td>
+                                <td>
+                                    <select 
+                                        className="status-select"
+                                        value={c.status} 
+                                        onChange={(e)=>updateStatus(c.complaint_id,e.target.value)}
+                                    >
+                                        <option value='pending'>Pending</option>
+                                        <option value='in progress'>In Progress</option>
+                                        <option value='Resolved'>Resolved</option>
+                                        <option value='Rejected'>Rejected</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
