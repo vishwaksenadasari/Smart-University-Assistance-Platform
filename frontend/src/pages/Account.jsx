@@ -25,7 +25,7 @@ function Account(){
     },[]);
 
     function modify(){
-        navigate('/manage-account');
+        (details.role==='student') ? navigate('/manage-account') : navigate('/admin/manage-account');
     }
 
     if (loading) return <div className="account-page"><p>Loading profile...</p></div>;

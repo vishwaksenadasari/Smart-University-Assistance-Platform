@@ -55,6 +55,8 @@ function App() {
           <Route path="complaints" element={<ManageComplaints />} />
           <Route path="notices" element={<ManageNotices />} />
           <Route path="notices/create" element={<CreateNotices />} />
+          <Route path='account' element={<Account />} />
+          <Route path='manage-account' element={<ManageAccount />} />
         </Route>
         </Routes>
     </Router>
