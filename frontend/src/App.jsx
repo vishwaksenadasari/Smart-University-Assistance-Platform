@@ -17,6 +17,9 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminLayout from "./components/AdminLayout";
 import ManageComplaints from "./pages/ManageComplaints";
 import ManageNotices from "./pages/ManageNotices";
+import LandingPage from "./pages/LandingPage";
+import ManageAccount from "./pages/ManageAccount";
+import Account from "./pages/Account";
 
 function App() {
   const token=localStorage.getItem('token');
@@ -30,6 +33,7 @@ function App() {
         <Route path='/verify-otp' element={<VerifyOtp />}/>
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/landing-page" element={<LandingPage />} />
         
         <Route path='/' element={<PrivateRoute requiredRole='student'><MainLayout /></PrivateRoute>} >
           <Route index element={<Dashboard />} />
@@ -39,6 +43,8 @@ function App() {
           <Route path='complaints' element={<TrackComplaints />} />
           <Route path="notices" element={<ViewNotices />} />
           <Route path="search" element={<Search />} />
+          <Route path="account" element={<Account />} />
+          <Route path="manage-account" element={<ManageAccount />} />
         </Route>
 
         {/* Admin Group with Persistent Sidebar */}

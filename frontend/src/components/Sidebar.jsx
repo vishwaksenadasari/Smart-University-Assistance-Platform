@@ -34,6 +34,9 @@ function Sidebar(){
         localStorage.removeItem('token');
         navigate('/login');
     }
+    function manageAccount(){
+        navigate('/account');
+    }
     return (
         <div className="admin-sidebar">
             <div className="sidebar-header">
@@ -53,6 +56,7 @@ function Sidebar(){
             </nav>
             <div className="sidebar-footer">
                 <button onClick={handleLogout} className="logout-btn">Sign Out</button>
+                <button onClick={manageAccount} className='logout-btn' style={{color:'blue'}}>My Account</button>
             </div>
         </div>
     );

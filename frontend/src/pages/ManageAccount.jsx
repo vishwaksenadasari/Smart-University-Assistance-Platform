@@ -1,0 +1,43 @@
+import { useState } from 'react';
+import api from '../api/axios';
+import { useNavigate } from 'react-router-dom';
+import "../styles/ManageAccount.css";
+
+function ManageAccount(){
+    const [name,setName]=useState('');
+    //const [email,setEmail]=useState('');
+    const [error,setError]=useState('');
+    const navigate=useNavigate();
+    async function handleChange(){
+        try{
+            const {data}=await api.put('/manage',{name});
+            alert(data?.message);
+            navigate('/dashboard');
+        }catch(err){
+            setError(err.response?.data?.mesaage);
+        }
+    }
+
+    return (
+        <div className="manage-account-page">
+            <div className="manage-account-container">
+                <h2 className="manage-account-title">Account Settings</h2>
+                {error && <p className="manage-account-error">{error}</p>}
+                <div className="input-group">
+                    <input 
+                        className="input-field"
+                        placeholder='Update Name' 
+                        value={name} 
+                        onChange={e=>setName(e.target.value)} 
+                        onKeyDown={e=>{
+                            if(e.key==='Enter') handleChange();
+                        }}
+                    />
+                </div>
+                <button className="btn-submit" onClick={handleChange}>Save Changes</button>
+            </div>
+        </div>
+    )
+}
+
+export default ManageAccount;

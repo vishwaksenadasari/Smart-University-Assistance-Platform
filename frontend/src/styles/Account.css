@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+.account-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+    background-color: #F7F6F2;
+    font-family: 'DM Sans', sans-serif;
+    padding: 40px 20px;
+}
+
+.account-container {
+    background-color: #FFFFFF;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 500px;
+    border: 1.5px solid #E2DDD6;
+    text-align: center;
+}
+
+.account-title {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 32px;
+    letter-spacing: -0.02em;
+}
+
+.account-avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #E9F5EF;
+    color: #2D6A4F;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 auto 24px;
+    font-family: 'Fraunces', serif;
+}
+
+.info-card {
+    background-color: #FBFBFA;
+    border: 1px solid #F0EFEA;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.info-item {
+    margin-bottom: 20px;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #8E8E8E;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+}
+
+.info-value {
+    font-size: 1.1rem;
+    color: #1A1A1A;
+    font-weight: 500;
+}
+
+.btn-modify {
+    width: 100%;
+    padding: 14px 20px;
+    background-color: #2D6A4F;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.22s ease;
+}
