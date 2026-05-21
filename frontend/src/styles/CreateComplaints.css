@@ -81,6 +81,13 @@
     transition: all 0.22s ease;
     margin-top: 10px;
 }
+.btn-primary:disabled, .btn-submit:disabled {
+    background-color: #cccccc; /* Greyed out color */
+    color: #666666;
+    cursor: not-allowed;
+    transform: none; /* Prevent hover animations */
+    box-shadow: none;
+}
 
 .btn-submit:hover {
     background-color: #1B4332;

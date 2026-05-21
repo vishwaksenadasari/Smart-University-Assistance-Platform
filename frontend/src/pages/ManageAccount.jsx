@@ -8,13 +8,18 @@ function ManageAccount(){
     //const [email,setEmail]=useState('');
     const [error,setError]=useState('');
     const navigate=useNavigate();
+    const [loading,setLoading]=useState(false);
     async function handleChange(){
+        setLoading(true);
+        setError('');
         try{
             const {data}=await api.put('/manage',{name});
             alert(data?.message);
             navigate('/dashboard');
         }catch(err){
             setError(err.response?.data?.mesaage);
+        }finally{
+            setLoading(false);
         }
     }
 
@@ -34,7 +39,7 @@ function ManageAccount(){
                         }}
                     />
                 </div>
-                <button className="btn-submit" onClick={handleChange}>Save Changes</button>
+                <button className="btn-submit" onClick={handleChange} disabled={loading}>{loading ? "Saving Changes..." : "Save Changes"}</button>
             </div>
         </div>
     )

@@ -80,6 +80,15 @@
     margin-top: 12px;
 }
 
+.btn-primary:disabled, .btn-submit:disabled {
+    background-color: #cccccc; /* Greyed out color */
+    color: #666666;
+    cursor: not-allowed;
+    transform: none; /* Prevent hover animations */
+    box-shadow: none;
+}
+
+
 .btn-primary:hover {
     background-color: #1B4332; /* Darker accent */
     transform: translateY(-1px);

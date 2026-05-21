@@ -6,18 +6,23 @@ import "../styles/Feedback.css";
 function Feedback(){
     const [mess,setMess]=useState('');
     const [error,setError]=useState('');
+    const [loading,setLoading]=useState(false);
     const navigate=useNavigate();
 
     async function handleFeedback(){
         if(!mess.trim()){
             return setError('Feedback message cannot be empty');
         }
+        setLoading(true);
+        setError('');
         try{
             const {data}=await api.post('/feedback',{mess});
             alert(data?.message);
             navigate('/dashboard');
         }catch(err){
             setError(err.response?.data?.error || 'Failed to submit feedback');
+        }finally{
+            setLoading(false);
         }
     }
 
@@ -34,7 +39,7 @@ function Feedback(){
                         onChange={e=>setMess(e.target.value)} 
                     />
                 </div>
-                <button className="btn-submit" onClick={handleFeedback}>Send Feedback</button>
+                <button className="btn-submit" onClick={handleFeedback} disabled={loading}>{loading ? "Sending Feedback..." : "Send Feedback"}</button>
             </div>
         </div>
     )

@@ -9,11 +9,14 @@ function CreateNotices(){
     const [title,setTitle]=useState('');
     const [description,setDescription]=useState('');
     const [error,setError]=useState('');
+    const [loading, setLoading] = useState(false);
     const navigate=useNavigate();
     async function handleNotices(){
         if(!title || !description){
             return setError('All fields are mandatory');
         }
+        setLoading(true);
+        setError('');
         const token = localStorage.getItem('token');
         const headers = { 
             'Authorization': `Bearer ${token}`,
@@ -28,6 +31,8 @@ function CreateNotices(){
             navigate('/admin/notices');
         }catch(err){
             setError(err.response?.data?.Error || 'failed to create notice');
+        }finally {
+            setLoading(false);
         }
     }
     return (
@@ -46,7 +51,7 @@ function CreateNotices(){
                         onChange={e=>setDescription(e.target.value)} 
                     />
                 </div>
-                <button className="btn-submit" onClick={handleNotices} type="submit">Submit Notice</button>
+                <button className="btn-submit" onClick={handleNotices} type="submit" disabled={loading}>{loading ? "Submiting Notice..." : "Submit Notice"}</button>
             </div>
         </div>
     );

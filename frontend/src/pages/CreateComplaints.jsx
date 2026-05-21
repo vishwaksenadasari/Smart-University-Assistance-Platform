@@ -7,11 +7,14 @@ function CreateComplaints(){
     const [title,setTitle]=useState('');
     const [description,setDescription]=useState('');
     const [error,setError]=useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     async function handleComplaints(){
         if(!title || !description){
             return setError('All fields are mandatory');
         }
+        setLoading(true);
+        setError('');
         try{
             await api.post('/complaints',{title,description});
             setError('');
@@ -19,6 +22,8 @@ function CreateComplaints(){
             navigate('/complaints');
         }catch(err){
             setError(err.response?.data?.error || 'Complaint submission failed');
+        }finally {
+            setLoading(false);
         }
     }
     return (
@@ -37,7 +42,7 @@ function CreateComplaints(){
                         onChange={e=>setDescription(e.target.value)} 
                     />
                 </div>
-                <button className="btn-submit" onClick={handleComplaints}>Submit Issue</button>
+                <button className="btn-submit" onClick={handleComplaints} disabled={loading}>{loading ? "Submiting Issue..." : "Submit Issue"}</button>
             </div>
         </div>
     );

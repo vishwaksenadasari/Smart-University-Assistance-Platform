@@ -9,10 +9,12 @@ function ForgotPassword(){
     const [email,setEmail]=useState('');
     const navigate=useNavigate();
     const [error,setError]=useState('');
+    const [loading,setLoading]=useState(false);
     async function handleReset(){
         if(!user_id || !email){
             return setError('all fields are mandatory');
         }
+        setLoading(true);
         const cleanEmail = email.trim();
         const cleanUserId = user_id.trim();
         try{
@@ -21,6 +23,8 @@ function ForgotPassword(){
             navigate('/verify-otp', { state: { isReset: true, email: cleanEmail, user_id: cleanUserId } });
         }catch(err){
             setError(err.response?.data?.message || err.response?.data?.error || 'Request failed');
+        }finally{
+            setLoading(false);
         }
     }
     return(
@@ -38,7 +42,7 @@ function ForgotPassword(){
                     }}
                     />
                 </div>
-                <button className="btn-primary" onClick={handleReset}>Send OTP</button>
+                <button className="btn-primary" onClick={handleReset} disabled={loading}>{loading ? "Sending OTP..." : "Send OTP"}</button>
             </div>
         </div>
     )

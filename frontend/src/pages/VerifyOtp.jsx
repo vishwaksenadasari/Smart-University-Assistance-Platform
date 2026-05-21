@@ -14,6 +14,7 @@ function VerifyOtp(){
     const isReset=location.state?.isReset;
     const navigate=useNavigate();
     const [timer, setTimer] = useState(60);
+    const [loading,setLoading]=useState(false);
 
     useEffect(() => {
         let interval;
@@ -45,6 +46,7 @@ function VerifyOtp(){
     }
 
     async function handleOtp(){
+        setLoading(true);
         try{
             const res= await api.post('/auth/verify-otp',{email,otp});
             alert(res.data?.message || res.data || 'Verification successful! Please login.');
@@ -52,6 +54,8 @@ function VerifyOtp(){
             (isReset) ? navigate('/reset-password',{state:{email}}) : navigate('/login',{replace:true});
         }catch(err){
             setError(err.response?.data?.message || 'otp verification failed');
+        }finally{
+            setLoading(false);
         }
     }
     
@@ -68,7 +72,7 @@ function VerifyOtp(){
                         if(e.key==='Enter') handleOtp();
                     }} />
                 </div>
-                <button className="btn-primary" onClick={handleOtp}>Verify</button>
+                <button className="btn-primary" onClick={handleOtp} disabled={loading}>{loading ? "Verifing..." : "Verify"}</button>
                 <div className="otp-actions">
                     <button className="resend-btn" onClick={handleResendOtp} disabled={timer > 0}>
                         {timer > 0 ? `Resend OTP (${timer}s)` : 'Resend OTP'}
