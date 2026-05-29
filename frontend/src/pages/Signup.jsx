@@ -10,6 +10,7 @@ function Signup(){
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [error,setError]=useState('');
+    const [loading,setLoading]=useState(false);
     const navigate=useNavigate();
 
 
@@ -17,12 +18,16 @@ function Signup(){
         if(!user_id || !name || !email || !password){
             return setError('All fields are required');
         }
+        setLoading(true);
+        setError('');
         try{
             const res = await api.post('/auth/signup',{user_id,name,email,password});
             alert(res.data?.message || 'otp sent succesfully');
             navigate('/verify-otp',{state: {email:email }, replace:true});
         }catch(err){
             setError(err.response?.data?.error || 'Signup failed');
+        }finally{
+            setLoading(false);
         }
     }
     return (
@@ -44,7 +49,7 @@ function Signup(){
                         if(e.key==='Enter') handlerSignup();
                     }} />
                 </div>
-                <button className="btn-primary" onClick={handlerSignup}>Sign up</button>
+                <button className="btn-primary" onClick={handlerSignup} disabled={loading}>{loading ? "Signing..." : "Sign Up"}</button>
                 <div className="auth-links">
                     <p>Already have an account? <Link to='/login' className="link-text">Login</Link></p>
                 </div>

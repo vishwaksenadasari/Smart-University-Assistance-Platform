@@ -1,5 +1,6 @@
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import "../styles/Sidebar.css";
+import ManageAccount from "../pages/ManageAccount";
 
 function AdminSidebar(){
     const location=useLocation();
@@ -28,6 +29,10 @@ function AdminSidebar(){
         navigate('/login');
     };
 
+    const manageAccount = ()=>{
+        navigate('/admin/account');
+    }
+
     return (
         <div className="admin-sidebar">
             <div className="sidebar-header">
@@ -52,6 +57,7 @@ function AdminSidebar(){
                 >
                     Sign Out
                 </button>
+                <button onClick={manageAccount} className="logout-btn" style={{color:'blue'}}>My Account</button>
             </div>
         </div>
     );

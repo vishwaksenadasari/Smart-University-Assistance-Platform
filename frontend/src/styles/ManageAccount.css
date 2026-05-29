@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-.create-notice-page {
+.manage-account-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,17 +10,17 @@
     padding: 40px 20px;
 }
 
-.create-notice-container {
+.manage-account-container {
     background-color: #FFFFFF;
     padding: 40px;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     width: 100%;
-    max-width: 550px;
+    max-width: 450px;
     border: 1.5px solid #E2DDD6;
 }
 
-.create-notice-title {
+.manage-account-title {
     font-family: 'Fraunces', serif;
     font-size: 2rem;
     font-weight: 600;
@@ -30,7 +30,7 @@
     text-align: center;
 }
 
-.create-notice-error {
+.manage-account-error {
     background-color: #FEF2F2;
     color: #DC2626;
     padding: 12px 16px;
@@ -61,12 +61,6 @@
     box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.1);
 }
 
-.textarea-field {
-    min-height: 150px;
-    resize: vertical;
-    line-height: 1.5;
-}
-
 .btn-submit {
     width: 100%;
     padding: 14px 20px;
@@ -80,6 +74,7 @@
     transition: all 0.22s ease;
     margin-top: 10px;
 }
+
 .btn-primary:disabled, .btn-submit:disabled {
     background-color: #cccccc; /* Greyed out color */
     color: #666666;
@@ -87,7 +82,6 @@
     transform: none; /* Prevent hover animations */
     box-shadow: none;
 }
-
 
 .btn-submit:hover {
     background-color: #1B4332;

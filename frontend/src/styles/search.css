@@ -58,6 +58,14 @@
     transition: all 0.22s ease;
 }
 
+.btn-primary:disabled, .search-btn:disabled {
+    background-color: #cccccc; /* Greyed out color */
+    color: #666666;
+    cursor: not-allowed;
+    transform: none; /* Prevent hover animations */
+    box-shadow: none;
+}
+
 .search-btn:hover {
     background-color: #1B4332;
     transform: translateY(-1px);

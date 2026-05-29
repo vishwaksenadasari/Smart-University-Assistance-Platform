@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-.create-notice-page {
+.feedback-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
     padding: 40px 20px;
 }
 
-.create-notice-container {
+.feedback-container {
     background-color: #FFFFFF;
     padding: 40px;
     border-radius: 16px;
@@ -20,7 +20,7 @@
     border: 1.5px solid #E2DDD6;
 }
 
-.create-notice-title {
+.feedback-title {
     font-family: 'Fraunces', serif;
     font-size: 2rem;
     font-weight: 600;
@@ -30,7 +30,7 @@
     text-align: center;
 }
 
-.create-notice-error {
+.feedback-error {
     background-color: #FEF2F2;
     color: #DC2626;
     padding: 12px 16px;
@@ -80,6 +80,7 @@
     transition: all 0.22s ease;
     margin-top: 10px;
 }
+
 .btn-primary:disabled, .btn-submit:disabled {
     background-color: #cccccc; /* Greyed out color */
     color: #666666;
@@ -87,7 +88,6 @@
     transform: none; /* Prevent hover animations */
     box-shadow: none;
 }
-
 
 .btn-submit:hover {
     background-color: #1B4332;

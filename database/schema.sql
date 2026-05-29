@@ -70,3 +70,8 @@ CREATE TABLE login_activity (
   ip_address VARCHAR(50),
   user_agent TEXT
 );
+
+create table feedback (
+	feedback_id int auto_increment primary key,
+    description varchar(255)
+    );

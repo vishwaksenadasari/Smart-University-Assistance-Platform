@@ -10,6 +10,7 @@ function Login(){
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
   const [error,setError]=useState('');
+  const [loading, setLoading] = useState(false);
   const navigate=useNavigate();
 
 
@@ -17,6 +18,9 @@ function Login(){
     if(!user_id || !email || !password){
       return setError('All fields are mandatory');
     }
+    setLoading(true);
+    setError('');
+
     const cleanUserId = user_id.trim();
     const cleanEmail = email.trim();
 
@@ -39,6 +43,8 @@ function Login(){
       else{
         setError(msg || 'login failed');
       }
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -46,6 +52,7 @@ function Login(){
       <div className="login-container">
         <h2 className="login-title">Login</h2>
         {error && <p className="login-error">{error}</p>}
+        <form onSubmit={handleLogin}>
         <div className="input-group">
           <input className="input-field" placeholder="Roll Number" value={user_id} onChange={e=>setUser_id(e.target.value)} />
         </div>
@@ -58,7 +65,10 @@ function Login(){
             if(e.key==='Enter') handleLogin();
           }} />
         </div>
-        <button className="btn-primary" onClick={handleLogin}>Login</button>
+          <button type="submit" className="btn-primary" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
         <div className="auth-links">
           <p><Link to='/forgot-password' className="link-text">Forgot password?</Link></p>
           <p>Don't have an account? <Link to='/signup' className="link-text">Sign up</Link></p>

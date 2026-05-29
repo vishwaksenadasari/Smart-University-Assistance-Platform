@@ -6,13 +6,17 @@ function Search(){
     const [query,setQuery]=useState('');
     const [results,setResults]=useState([]);
     const [error,setError]=useState('');
+    const [loading,setLoading]=useState(false);
     async function handleSearch(){
+        setLoading(true);
         try{
             const {data}=await api.get('/search',{params:{q:query}});
             setResults(data);
             setError('');
         }catch(err){
             setError(err.response?.data?.Error || 'failed to search');
+        }finally{
+            setLoading(false);
         }
     }
     return (
@@ -30,7 +34,7 @@ function Search(){
                         if(e.key==='Enter') handleSearch();
                     }}
                 />
-                <button className="search-btn" onClick={handleSearch} type="submit">Search</button>
+                <button className="search-btn" onClick={handleSearch} type="submit" disabled={loading}>{loading ? "Searching..." : "Search"}</button>
             </div>
 
             <div className="search-results">
