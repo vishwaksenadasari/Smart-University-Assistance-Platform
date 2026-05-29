@@ -14,7 +14,8 @@ function Login(){
   const navigate=useNavigate();
 
 
-  async function handleLogin(){
+  async function handleLogin(e){
+    e.preventDefault();
     if(!user_id || !email || !password){
       return setError('All fields are mandatory');
     }
