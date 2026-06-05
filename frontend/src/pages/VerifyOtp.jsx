@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../styles/VerifyOtp.css";
+import toast from "react-hot-toast";
 
 function VerifyOtp(){
     const [otp,setOtp]=useState('');
@@ -37,7 +38,7 @@ function VerifyOtp(){
             const payload = isReset ? { email, user_id } : { email, user_id: email.split('@')[0] }; 
             // user_id logic depends on your signup roll number convention
             const res = await api.post('/auth/verify-email', payload);
-            alert(res.data?.message || 'New OTP sent');
+            toast.success(res.data?.message || 'New OTP sent');
             setError('');
             setTimer(60);
         } catch (err) {
@@ -49,7 +50,7 @@ function VerifyOtp(){
         setLoading(true);
         try{
             const res= await api.post('/auth/verify-otp',{email,otp});
-            alert(res.data?.message || res.data || 'Verification successful! Please login.');
+            toast.success(res.data?.message || res.data || 'Verification successful! Please login.');
             setError('');
             (isReset) ? navigate('/reset-password',{state:{email}}) : navigate('/login',{replace:true});
         }catch(err){

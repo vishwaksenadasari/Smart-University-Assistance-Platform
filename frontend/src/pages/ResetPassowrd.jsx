@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from '../api/axios'
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/ResetPassword.css";
+import toast from "react-hot-toast";
 
 function ResetPassword(){
     const [password,setPassword]=useState('');
@@ -28,7 +29,7 @@ function ResetPassword(){
             }
             setLoading(true);
             const res=await api.post('/auth/reset-password',{email,password});
-            alert(res.data?.message);
+            toast.success(res.data?.message);
             navigate('/login',{replace:true});
         }catch(err){
             setError(err.response?.data?.message || err.response?.data?.error || 'Password reset failed');

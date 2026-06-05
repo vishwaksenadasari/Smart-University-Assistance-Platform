@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {Toaster} from "react-hot-toast";
+
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
@@ -25,6 +27,7 @@ import Feedback from "./pages/Feedback";
 function App() {
   const token=localStorage.getItem('token');
   return (
+    <>
     <Router>
       <Routes>
 
@@ -63,6 +66,8 @@ function App() {
         </Route>
         </Routes>
     </Router>
+    <Toaster  position="top-right"/>
+    </>
   );
 }
 

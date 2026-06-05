@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from '../api/axios'
 import "../styles/ForgotPassword.css";
+import toast from "react-hot-toast";
 
 function ForgotPassword(){
     //const [password,setPassword]=useState('');
@@ -19,7 +20,7 @@ function ForgotPassword(){
         const cleanUserId = user_id.trim();
         try{
             const result=await api.post('/auth/verify-email',{user_id: cleanUserId, email: cleanEmail});
-            alert(result.data?.message || 'otp set successfully');
+            toast.success(result.data?.message || 'otp set successfully');
             navigate('/verify-otp', { state: { isReset: true, email: cleanEmail, user_id: cleanUserId } });
         }catch(err){
             setError(err.response?.data?.message || err.response?.data?.error || 'Request failed');
