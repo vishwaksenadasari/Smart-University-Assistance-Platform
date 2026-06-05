@@ -3,6 +3,7 @@ import { useState } from "react";
 import api from '../api/axios'
 import { useNavigate } from "react-router-dom";
 import "../styles/CreateNotices.css";
+import toast from "react-hot-toast";
 
 
 function CreateNotices(){
@@ -27,7 +28,7 @@ function CreateNotices(){
             setTitle('');
             setDescription('');
             setError('');
-            alert('notice created successfully');
+            toast.success('notice created successfully');
             navigate('/admin/notices');
         }catch(err){
             setError(err.response?.data?.Error || 'failed to create notice');

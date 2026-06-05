@@ -2,6 +2,7 @@ import { useState } from 'react';
 import api from '../api/axios';
 import { useNavigate } from 'react-router-dom';
 import "../styles/ManageAccount.css";
+import toast from 'react-hot-toast';
 
 function ManageAccount(){
     const [name,setName]=useState('');
@@ -14,7 +15,7 @@ function ManageAccount(){
         setError('');
         try{
             const {data}=await api.put('/manage',{name});
-            alert(data?.message);
+            toast.success(data?.message);
             navigate('/dashboard');
         }catch(err){
             setError(err.response?.data?.mesaage);
