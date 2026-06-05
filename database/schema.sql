@@ -75,3 +75,16 @@ create table feedback (
 	feedback_id int auto_increment primary key,
     description varchar(255)
     );
+
+
+
+
+ alter table complaints drop foreign key complaints_ibfk_1;
+
+alter table complaints add constraint complaints_ibfk_1 foreign key (student_id) references users(user_id) on delete cascade;
+
+alter table notices drop foreign key notices_ibfk_1;
+alter table notices drop foreign key notices_ibfk_2;
+
+alter table notices add constraint notices_ibfk_1 foreign key (department_id) references departments(department_id) on delete cascade,
+add constraint notices_ibfk_2 foreign key (created_by) references users(user_id) on delete cascade;
