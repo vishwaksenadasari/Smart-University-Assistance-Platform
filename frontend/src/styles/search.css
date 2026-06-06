@@ -59,16 +59,26 @@
 }
 
 .btn-primary:disabled, .search-btn:disabled {
-    background-color: #cccccc; /* Greyed out color */
+    background-color: #cccccc;
     color: #666666;
     cursor: not-allowed;
-    transform: none; /* Prevent hover animations */
+    transform: none;
     box-shadow: none;
 }
 
 .search-btn:hover {
     background-color: #1B4332;
     transform: translateY(-1px);
+}
+
+.search-info {
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    color: #2D3748;
+}
+
+.no-results {
+    color: #9B2C2C;
 }
 
 .search-results {
@@ -90,11 +100,43 @@
     border-color: #2D6A4F;
 }
 
+.search-result-card.result-article {
+    border-left: 5px solid #2D6A4F;
+}
+
+.search-result-card.result-department {
+    border-left: 5px solid #4F46E5;
+}
+
+.search-result-card.result-notice {
+    border-left: 5px solid #DC2626;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
 .result-title {
     font-family: 'Fraunces', serif;
     font-size: 1.25rem;
     color: #1A1A1A;
-    margin-bottom: 8px;
+    margin: 0;
+    flex: 1;
+}
+
+.result-badge {
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
 }
 
 .result-content {
@@ -114,4 +156,22 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+.result-meta {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #E2DDD6;
+}
+
+.meta-item {
+    font-size: 0.85rem;
+    color: #4A4A4A;
+    margin: 8px 0;
+}
+
+.highlight {
+    background-color: #FFEBBF;
+    border-radius: 4px;
+    padding: 0 2px;
 }
