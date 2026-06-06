@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from '../api/axios';
 import "../styles/ManageComplaints.css";
+import toast from "react-hot-toast";
 
 function ManageComplaints(){
     const [complaints,setComplaints]=useState([]);
@@ -31,7 +32,7 @@ function ManageComplaints(){
         };
         try{
             await api.put(`/complaints/${id}`,{status}, { headers });
-            alert('complaint updated successfully');
+            toast.success('complaint updated successfully');
             fetchComplaints();
         }catch(err){
             setError(err.response?.data?.error || 'failed to update status of complaint');

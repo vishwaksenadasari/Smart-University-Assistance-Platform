@@ -9,13 +9,17 @@ const transporter=nodemailer.createTransport({
     }
 });
 
-const sendEmail = async (to,subject,text)=>{
+const sendEmail = async (to,subject,text,bcc)=>{
     const mailOptions={
         from:process.env.EMAIL_USER,
         to,
         subject,
         text
     };
+
+    if (bcc) {
+        mailOptions.bcc = bcc;
+    }
 
     await transporter.sendMail(mailOptions);
 }

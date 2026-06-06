@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import api from '../api/axios'
 import {jwtDecode} from 'jwt-decode'
 import "../styles/login.css";
+import toast from "react-hot-toast";
 
 function Login(){
 
@@ -30,15 +31,17 @@ function Login(){
       localStorage.setItem('token',data.token);
       const decoded=jwtDecode(data.token);
       if(decoded.role==='staff'){
+        toast.success('Login Successful');
         navigate('/admin/dashboard',{replace:true});
       }else{
+        toast.success('Login Successful');
         navigate('/dashboard',{replace:true});
       }
       }catch(err){
       const msg = err.response?.data?.message || err.response?.data?.error || 'Login failed';
       if(msg === 'please verify email first.'){
         const res=await api.post('/auth/verify-email',{user_id: cleanUserId, email: cleanEmail});
-        alert(res.data?.message || 'otp sent successfully');
+        toast.success(res.data?.message || 'otp sent successfully');
         navigate('/verify-otp', { state: { email: cleanEmail }, replace: true });
       }
       else{

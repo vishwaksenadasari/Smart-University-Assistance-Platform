@@ -2,6 +2,7 @@ import { useState } from 'react';
 import api from '../api/axios';
 import { useNavigate } from 'react-router-dom';
 import "../styles/CreateComplaints.css";
+import toast from 'react-hot-toast';
 
 function CreateComplaints(){
     const [title,setTitle]=useState('');
@@ -18,7 +19,7 @@ function CreateComplaints(){
         try{
             await api.post('/complaints',{title,description});
             setError('');
-            alert('complaint created successfully');
+            toast.success('complaint created successfully');
             navigate('/complaints');
         }catch(err){
             setError(err.response?.data?.error || 'Complaint submission failed');

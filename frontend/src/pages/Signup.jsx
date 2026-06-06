@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
 import api from '../api/axios'
 import "../styles/signup.css";
+import toast from "react-hot-toast";
 
 function Signup(){
 
@@ -22,7 +23,7 @@ function Signup(){
         setError('');
         try{
             const res = await api.post('/auth/signup',{user_id,name,email,password});
-            alert(res.data?.message || 'otp sent succesfully');
+            toast.success(res.data?.message || 'otp sent succesfully');
             navigate('/verify-otp',{state: {email:email }, replace:true});
         }catch(err){
             setError(err.response?.data?.error || 'Signup failed');

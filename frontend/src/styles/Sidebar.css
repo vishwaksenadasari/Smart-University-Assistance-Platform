@@ -2,7 +2,7 @@
 
 .admin-sidebar {
     width: 260px;
-    min-height: 100vh;
+    height: 100vh; /* fixed to viewport height */
     background-color: #FFFFFF;
     color: #4A4A4A;
     display: flex;
@@ -11,6 +11,7 @@
     box-shadow: 2px 0 12px rgba(0,0,0,0.03);
     position: sticky;
     top: 0;
+    overflow-y: auto; /* allow sidebar content to scroll internally if needed */
 }
 
 .sidebar-header {
