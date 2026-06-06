@@ -25,7 +25,6 @@ insert into notices (title,description) values
 INSERT INTO complaints (student_id, title, description)
 VALUES ('24011A6618', 'Example title', 'Example description');
 
-<<<<<<< HEAD
 
 insert into departments values(1,'CSE'),(2,'Examination'),(3,'Library');
 
@@ -39,7 +38,6 @@ VALUES
 (2,'Examination', 'Exam2' ,'Student Portal Staff','Exam2@gamil.com',1234567894,'Examination Department'),
 (3,'Library', 'Lib1', 'Library Staff','Library@gmail.com',1234567895,'University Library');
 
-=======
 INSERT INTO help_articles (article_id, title, content, category, created_at) VALUES
 (9, "How to submit a new complaint", "To file a complaint, go to the Complaints page, choose 'Create Complaint', enter a clear title and description, then submit. Your complaint will be tracked automatically and you can check its status later.", "Complaints", "2026-06-06 14:52:25"),
 (10, "How to track complaint status", "Open the Track Complaints page, enter your complaint ID or login credentials, and review status updates. The system will show Pending, In Progress, Resolved, or Rejected states.", "Complaints", "2026-06-06 14:52:25"),
@@ -62,4 +60,3 @@ INSERT INTO help_articles (article_id, title, content, category, created_at) VAL
 (35, "Apply for library access", "Students can request extended library access by submitting a library access form available on the Library page. Approved students receive an email with access instructions.", "Library", "2026-06-06 15:13:02"),
 (36, "Frequently asked account questions", "This article explains common account issues such as password recovery, email updates, and account verification. Use the Support page if your issue is not resolved here.", "Accounts", "2026-06-06 15:13:02"),
 (37, "Campus safety notice overview", "Read campus safety notices for emergency alerts, health guidance, and safety protocol changes. These notices are posted immediately when there is important information for students or staff.", "Notices", "2026-06-06 15:13:02");
->>>>>>> f85f19e3aa796107d7977d0fddd7c640e88a3ab8
