@@ -24,3 +24,17 @@ insert into notices (title,description) values
 
 INSERT INTO complaints (student_id, title, description)
 VALUES ('24011A6618', 'Example title', 'Example description');
+
+
+insert into departments values(1,'CSE'),(2,'Examination'),(3,'Library');
+
+INSERT INTO faculty
+(department_id, department_name, name, description, contact_email, phone, office_location)
+VALUES
+(1,'CSE','CSE1','faculty at cse','cse1@gmail.com',1234567890,'CSE department'),
+(1,'CSE','CSE2','faculty at cse','cse2@gmail.com',1234567891,'CSE department'),
+(1,'CSE','CSE3','faculty at cse','cse3@gmail.com',1234567892,'CSE department'),
+(2,'Examination','Exam1' ,'Student Portal Staff','Exam1@gmail.com',1234567893,'Examination Department'),
+(2,'Examination', 'Exam2' ,'Student Portal Staff','Exam2@gamil.com',1234567894,'Examination Department'),
+(3,'Library', 'Lib1', 'Library Staff','Library@gmail.com',1234567895,'University Library');
+

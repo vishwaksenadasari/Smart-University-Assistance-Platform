@@ -88,3 +88,50 @@ alter table notices drop foreign key notices_ibfk_2;
 
 alter table notices add constraint notices_ibfk_1 foreign key (department_id) references departments(department_id) on delete cascade,
 add constraint notices_ibfk_2 foreign key (created_by) references users(user_id) on delete cascade;
+
+
+
+ALTER TABLE departments
+RENAME TO faculty;
+
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(100) NOT NULL
+);
+
+ALTER TABLE users
+DROP FOREIGN KEY users_ibfk_1;
+
+ALTER TABLE users
+DROP COLUMN department_id;
+
+ALTER TABLE users
+ADD COLUMN department_id INT NULL,
+ADD CONSTRAINT users_ibfk_1
+FOREIGN KEY (department_id)
+REFERENCES departments(department_id);
+
+
+ALTER TABLE notices
+DROP FOREIGN KEY notices_ibfk_1;
+
+ALTER TABLE notices
+DROP COLUMN department_id,
+ADD COLUMN department_id INT NULL,
+ADD CONSTRAINT notices_ibfk_01
+FOREIGN KEY (department_id)
+REFERENCES departments(department_id);
+
+drop table faculty;
+
+CREATE TABLE faculty (
+    department_id INT NOT NULL,
+    department_name VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    contact_email VARCHAR(100),
+    phone VARCHAR(20),
+    office_location VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(department_id) REFERENCES departments(department_id)
+);
