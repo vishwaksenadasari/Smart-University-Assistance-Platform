@@ -81,6 +81,10 @@ router.post('/login',async (req,res,next)=>{
             process.env.JWT_SECRET,
             {expiresIn:'7d'}
         );
+        res.json({
+            message:'Login successful',
+            token
+        });
         await db.query('insert into login_activity (user_id,email,ip_address,user_agent) values (?,?,?,?)',
             [user.user_id,user.email,req.ip,req.headers['user-agent']]
         );
@@ -99,10 +103,6 @@ router.post('/login',async (req,res,next)=>{
             If this was you, no action needed.
             If not, please reset your password immediately.`
         ).catch(err=>console.error('failed to send security alert:',err));
-        res.json({
-            message:'Login successful',
-            token
-        });
     }catch(err){
         next(err);
     }

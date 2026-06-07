@@ -44,13 +44,13 @@ router.post('/',auth, async (req,res,next)=>{
         const [rows]=await db.query('select * from complaints where complaint_id=?',
             [results.insertId]
         );
+        res.status(201).json(rows[0]);
         await sendEmail(
             req.user.email,
             'Complaint Submitted',
             `Hello user,
             Your complaint ${results.insertId} has successfully submitted.`
         )
-        res.status(201).json(rows[0]);
     }catch(err){
         next(err);
     }

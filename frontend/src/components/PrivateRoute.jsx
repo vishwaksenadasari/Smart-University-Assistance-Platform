@@ -6,7 +6,7 @@ function PrivateRoute({children, requiredRole }){
 
     const decoded = jwtDecode(token);
     if(requiredRole && decoded.role !== requiredRole){
-        return <Navigate to='/unauthorized' />
+        return <Navigate to='/admin/dashboard' />
     }
 
     return children;
