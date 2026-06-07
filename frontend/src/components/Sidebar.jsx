@@ -7,27 +7,27 @@ function Sidebar(){
     const mainItems=[
         {
             name:'Dashboard',
-            path:'/dashboard'
+            path:'/student/dashboard'
         },
         {
             name:'Search',
-            path:'/search'
+            path:'/student/search'
         },
         {
             name:'Submit Issue',
-            path:'/complaints/create'
+            path:'/student/complaints/create'
         },
         {
             name:'View Issues',
-            path:'/complaints'
+            path:'/student/complaints'
         },
         {
             name:'View Notices',
-            path:'/notices'
+            path:'/student/notices'
         },
         {
             name:'Departments',
-            path:'/departments'
+            path:'/student/departments'
         }
     ];
     function handleLogout(){
@@ -35,7 +35,7 @@ function Sidebar(){
         navigate('/login');
     }
     function manageAccount(){
-        navigate('/account');
+        navigate('/student/account');
     }
     return (
         <div className="admin-sidebar">

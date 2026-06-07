@@ -35,7 +35,7 @@ function Login(){
         navigate('/admin/dashboard',{replace:true});
       }else{
         toast.success('Login Successful');
-        navigate('/dashboard',{replace:true});
+        navigate('/student/dashboard',{replace:true});
       }
       }catch(err){
       const msg = err.response?.data?.message || err.response?.data?.error || 'Login failed';

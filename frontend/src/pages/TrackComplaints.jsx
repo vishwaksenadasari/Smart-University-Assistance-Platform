@@ -26,7 +26,7 @@ function TrackComplaints(){
         <div className="track-complaints-page">
             <div className="track-header">
                 <h2 className="track-title">Your Complaints</h2>
-                <Link to='/complaints/create' className="btn-create">+ Create New Complaint</Link>
+                <Link to='/student/complaints/create' className="btn-create">+ Create New Complaint</Link>
             </div>
 
             {error && <p className="error-text">{error}</p>}

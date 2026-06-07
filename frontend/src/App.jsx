@@ -31,7 +31,7 @@ function App() {
     <Router>
       <Routes>
 
-        <Route path='/' element={token ? <Navigate to='/dashboard' /> : <Navigate to='/login' />} />
+        <Route path='/' element={token ? <Navigate to='/student/dashboard' /> : <Navigate to='/landing-page' />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/verify-otp' element={<VerifyOtp />}/>
@@ -39,7 +39,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/landing-page" element={<LandingPage />} />
         
-        <Route path='/' element={<PrivateRoute requiredRole='student'><MainLayout /></PrivateRoute>} >
+        <Route path='/student' element={<PrivateRoute requiredRole='student'><MainLayout /></PrivateRoute>} >
           <Route index element={<Dashboard />} />
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='departments' element={<Departments />} />

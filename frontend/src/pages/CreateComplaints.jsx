@@ -20,7 +20,7 @@ function CreateComplaints(){
             await api.post('/complaints',{title,description});
             setError('');
             toast.success('complaint created successfully');
-            navigate('/complaints');
+            navigate('/student/complaints');
         }catch(err){
             setError(err.response?.data?.error || 'Complaint submission failed');
         }finally {

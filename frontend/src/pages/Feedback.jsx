@@ -19,7 +19,7 @@ function Feedback(){
         try{
             const {data}=await api.post('/feedback',{mess});
             toast.success(data?.message);
-            navigate('/dashboard');
+            navigate('/student/dashboard');
         }catch(err){
             setError(err.response?.data?.error || 'Failed to submit feedback');
         }finally{

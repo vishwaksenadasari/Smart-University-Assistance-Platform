@@ -36,7 +36,7 @@ router.post('/',auth, async (req,res,next)=>{
             err.status=404;
             return next(err);
         }
-        const [departmentRows]=await db.query('select department_name from departments where department_id=?',
+        const [departmentRows]=await db.query('select department_name from faculty where department_id=?',
             [department_id]
         );
         const department_name=departmentRows[0]?.department_name;

@@ -37,10 +37,10 @@ function Dashboard() {
   const resolvedCount = complaints.filter(c => c.status?.toLowerCase() === 'resolved').length;
 
   const stats = [
-    { label: "Total Complaints", value: complaints.length, icon: "📋", to: "/complaints" },
-    { label: "Pending Issues",   value: pendingCount,  icon: "⏳", to: "/complaints" },
-    { label: "Resolved Issues",  value: resolvedCount, icon: "✅", to: "/complaints" },
-    { label: "Latest Notices",   value: notices.length,  icon: "📢", to: "/notices"    },
+    { label: "Total Complaints", value: complaints.length, icon: "📋", to: "/student/complaints" },
+    { label: "Pending Issues",   value: pendingCount,  icon: "⏳", to: "/student/complaints" },
+    { label: "Resolved Issues",  value: resolvedCount, icon: "✅", to: "/student/complaints" },
+    { label: "Latest Notices",   value: notices.length,  icon: "📢", to: "/student/notices"    },
   ];
 
   const recentComplaints = complaints
@@ -69,7 +69,7 @@ function Dashboard() {
       <div className="dash-topbar">
         <span className="dash-brand">Student<span>Portal</span></span>
 
-        <Link to="/search" className="dash-search-link">
+        <Link to="/student/search" className="dash-search-link">
           <input
             className="dash-search-input"
             placeholder="Search complaints, notices…"
@@ -85,10 +85,10 @@ function Dashboard() {
           <p>You have {pendingCount} pending complaints and {notices.length} new notices. Stay on top of things.</p>
         </div>
         <div className="dash-greeting-actions">
-          <Link to="/complaints/create">
+          <Link to="/student/complaints/create">
             <button className="btn-primary">+ Submit an Issue</button>
           </Link>
-          <Link to="/notices">
+          <Link to="/student/notices">
             <button className="btn-ghost">View Notices</button>
           </Link>
         </div>
@@ -114,7 +114,7 @@ function Dashboard() {
         <div className="panel">
           <div className="panel-header">
             <span className="panel-title">Recent Complaints</span>
-            <Link to="/complaints" className="panel-link">View All →</Link>
+            <Link to="/student/complaints" className="panel-link">View All →</Link>
           </div>
           <ul className="panel-list">
             {recentComplaints.map((c) => (
@@ -134,7 +134,7 @@ function Dashboard() {
         <div className="panel">
           <div className="panel-header">
             <span className="panel-title">Latest Notices</span>
-            <Link to="/notices" className="panel-link">See All →</Link>
+            <Link to="/student/notices" className="panel-link">See All →</Link>
           </div>
           <ul className="panel-list">
             {latestNotices.map((n) => (

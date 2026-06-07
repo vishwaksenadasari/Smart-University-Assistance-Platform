@@ -16,7 +16,7 @@ function ManageAccount(){
         try{
             const {data}=await api.put('/manage',{name});
             toast.success(data?.message);
-            navigate('/dashboard');
+            navigate('/student/dashboard');
         }catch(err){
             setError(err.response?.data?.mesaage);
         }finally{

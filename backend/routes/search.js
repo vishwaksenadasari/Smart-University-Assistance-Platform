@@ -22,11 +22,20 @@ router.get('/',auth,async (req,res,next)=>{
             LIMIT 10
         `;
 
-        // Search departments
+        // Search departments and display staff name as title
         const deptSql = `
-            SELECT department_id as id, department_name as title, description as content, contact_email, phone, office_location, created_at, 'department' as type
-            FROM departments
-            WHERE LOWER(department_name) LIKE ?
+            SELECT department_id as id,
+                   name as title,
+                   description as content,
+                   department_name as category,
+                   contact_email,
+                   phone,
+                   office_location,
+                   created_at,
+                   'department' as type
+            FROM faculty
+            WHERE LOWER(name) LIKE ?
+               OR LOWER(department_name) LIKE ?
                OR LOWER(description) LIKE ?
                OR LOWER(contact_email) LIKE ?
             LIMIT 10
@@ -44,7 +53,7 @@ router.get('/',auth,async (req,res,next)=>{
         `;
 
         const [articles] = await db.query(articleSql, [queryText, queryText, queryText]);
-        const [departments] = await db.query(deptSql, [queryText, queryText, queryText]);
+        const [departments] = await db.query(deptSql, [queryText, queryText, queryText, queryText]);
         const [notices] = await db.query(noticeSql, [queryText, queryText, queryText]);
 
         const allResults = [...articles, ...departments, ...notices];

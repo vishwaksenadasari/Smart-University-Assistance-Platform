@@ -25,11 +25,11 @@ function Account(){
     },[]);
 
     function modify(){
-        (details.role==='student') ? navigate('/manage-account') : navigate('/admin/manage-account');
+        (details.role==='student') ? navigate('/student/manage-account') : navigate('/admin/manage-account');
     }
 
     function feedback(){
-        (details.role==='student') ? navigate('/feedback') : navigate('/admin/feedback');
+        (details.role==='student') ? navigate('/student/feedback') : navigate('/admin/feedback');
     }
     if (loading) return <div className="account-page"><p>Loading profile...</p></div>;
 

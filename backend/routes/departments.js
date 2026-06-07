@@ -6,7 +6,7 @@ const auth=require('../middleware/auth');
 router.get('/',auth,async (req,res,next)=>{
     try{
         const {department_name}=req.query;
-        let sql='select * from departments where 1=1';
+        let sql='select * from faculty where 1=1';
         const params=[];
         if(department_name){
             sql+=' and department_name=?';
