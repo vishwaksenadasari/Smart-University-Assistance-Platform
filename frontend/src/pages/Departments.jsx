@@ -14,7 +14,7 @@ function Departments() {
           'Content-Type': 'application/json'
       };
       try{
-        const {data}=await api.get('/departments',{params: {department_name : department}, headers});
+        const {data}=await api.get('/departments',{params: department ? {department_name : department} : {}, headers});
         setDeps(data);
         setError('');
       }
@@ -45,7 +45,7 @@ function Departments() {
       
       <div className="departments-list">
         {deps.map(d => (
-          <div key={d.department_id} className="department-card">
+          <div key={d.faculty_id} className="department-card">
             <h3 className="department-name">{d.name}</h3>
             <p className="department-detail"><strong>Department:</strong> {d.department_name}</p>
             <p className="department-detail"><strong>Description:</strong> {d.description}</p>

@@ -125,6 +125,7 @@ REFERENCES departments(department_id);
 drop table faculty;
 
 CREATE TABLE faculty (
+    faculty_id INT AUTO_INCREMENT PRIMARY KEY,
     department_id INT NOT NULL,
     department_name VARCHAR(255) NOT NULL,
     name VARCHAR(100) NOT NULL,

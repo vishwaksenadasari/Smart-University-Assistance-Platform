@@ -29,7 +29,7 @@ function ViewNotices(){
         fetchData();
     },[department]);
 
-    const deps=["All","Examination","Library","CSE"];
+    const deps=["All","Examination","Library","CSE","ECE"];
 
     return (
         <div className="view-notices-page">
