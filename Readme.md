@@ -1,34 +1,109 @@
-open new terminal in vs code
-git checkout develop
-git pull origin develop
 
-update the .env.example with recommended changes and create a new file as .env and paste the contents of .env.example
+# Smart University Assistance Platform
 
-For EMAIL_PASS in .env follow:
-go to google account login with your account
-click manage your account
-in left bar click on security and sign in
-enable two step verification
-after enabling two step verification in the search bar type
-app passwords
-click on app passwords
-create app name as smart-university-assistance-platform on creation you will get a pop up with one password copy it and paste that password in .env EMAIL_PASS.
+A lightweight platform for managing university notices, complaints, feedback, and account management. This repository contains a Node.js/Express backend and a Vite + React frontend.
 
-open mysqlworkbench(changed codes only)
-execute the schema.sql codes
-execute the seed.sql codes
+## Repository Structure
 
+- `backend/` — Express server, API routes, middleware, and services.
+- `frontend/` — React (Vite) single-page app.
+- `database/` — SQL schema and seed files.
 
-open new terminal in vscode
+## Features
+
+- User authentication and account management
+- Create, view, and manage notices
+- Create and track complaints
+- Feedback submission
+- Department search and management
+
+## Prerequisites
+
+- Node.js (>= 18 recommended)
+- npm or yarn
+- MySQL (or compatible) for the provided SQL schema
+
+## Backend Setup
+
+1. Change to the backend folder:
+
+```bash
 cd backend
-npm install
-node index.js
-keep this open
-after that
-open new terminal
-cd frontend
-npm install
-npm run dev
-click on the link shown in frontend terminal
+```
 
-try to login with your old accounts and check the signup feature with other account with valid email account since otp verification is needed
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env` file based on the environment variables your app expects (see `backend/config/db.js` for DB connection hints). Typical variables:
+
+```
+PORT=5000
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=yourpassword
+DB_NAME=smart_university
+JWT_SECRET=your_jwt_secret
+```
+
+4. Initialize the database using the SQL files in `database/` (use your preferred MySQL client):
+
+```sql
+-- from project root or import via client
+SOURCE database/schema.sql;
+SOURCE database/seed.sql;
+```
+
+5. Start the backend (development):
+
+```bash
+npm run dev
+```
+
+## Frontend Setup
+
+1. Change to the frontend folder:
+
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+The frontend expects the backend API to be available at the configured base URL (see `frontend/api/axios.js`). Update the base URL there or via env variables as needed.
+
+## Scripts
+
+- Backend: defined in `backend/package.json` (e.g., `start`, `dev`).
+- Frontend: defined in `frontend/package.json` (e.g., `dev`, `build`, `preview`).
+
+## Useful Files
+
+- Backend entry: `backend/index.js`
+- DB config: `backend/config/db.js`
+- Frontend entry: `frontend/src/main.jsx`
+- DB schema & seeds: `database/schema.sql`, `database/seed.sql`
+
+## Contributing
+
+1. Fork the repo
+2. Create a feature branch
+3. Raise a pull request with a clear description and tests where appropriate
+
+## License
+
+This project does not include a license file. Add `LICENSE` if you wish to choose a license.
+
+---
